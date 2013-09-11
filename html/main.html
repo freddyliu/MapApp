@@ -3,7 +3,7 @@
 	
 	<head>
 		<meta charset="utf-8">
-		<title>MapApp - Welcome to MapApp</title>
+		<title>MapApp - Plan Your Trip with MapApp</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="">
 		<meta name="description" content="">
@@ -34,23 +34,17 @@
 		
 		<div class="container">
 			<section id="main-container">
-				<hgroup>
-					<h1>MapApp</h1>
-					<h2>Plan your trip</h2>
-				</hgroup>
+				<h1>Start planning your trip in ...</h1>
 				<section id="search">
-					<form id="search-destination-form" action="">
+					<form id="main-search-form" action="">
 						<div class="form-container">
-							<label>Your destination</label><br>
-							<select id="destination">
-								<option value="">Location</option>
-								<option value="eastwood">Eastwood</option>
-								<option value="hunter-valley">Hunter Valley</option>
-								<option value="hurstville">Hurstville</option>
-								<option value="maroubra">Maroubra</option>
-								<option value="sydney">Sydney</option>
-							</select>
-							<button type="submit" class="large-button">Plan it</button>
+							<label>What are you looking for</label>
+							<input id="keywords" type="text" placeholder="" class="large-input" />
+							<button type="button" class="large-button" id="more-details">More Details</button>
+							<div id="search-details">
+								
+							</div>
+							<button type="submit" class="large-button">Search</button>
 						</div>
 					</form>
 				</section>

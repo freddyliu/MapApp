@@ -1,0 +1,115 @@
+body {
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	font-family:Helvettica,Arial,sans-serif;
+	text-rendering: optimizeLegibility;
+}
+
+.container {
+	max-width: 1200px;
+}
+
+nav.navbar {
+	border-radius: 0;
+}
+
+.navbar-header {
+	padding: 0;
+}
+
+.navbar-brand {
+	font-size: 1.5em;
+	font-weight: 900;
+}
+
+#main-container {
+	margin: 50px auto 0 auto;
+}
+
+hgroup, h1 {
+	text-align: center;
+}
+
+h1 {
+	font-size: 3em;
+	font-weight: 900 !important;
+	font-family: "Arial Black", Arial, sans-serif;
+}
+
+h2 {
+	font-size: 2em;
+	font-weight: 600 !important;
+	text-transform: uppercase;
+	font-family: "Arial Black", Arial, sans-serif;
+}
+
+#search {
+	text-align: center;
+	margin: 50px auto 50px auto;
+	max-width: 600px;
+}
+
+input {
+	height: 40px;
+}
+
+input, select {
+	width: 100%;
+	margin: 0 0 25px 0;
+}
+
+select {
+	padding: 11px 0 11px 0;
+	font-size: 1.2em;
+}
+
+button.large-button {
+	border: none;
+	width: 100%;
+	margin-bottom: 25px;
+	font-weight: 900;
+	text-transform: uppercase;
+	font-family: "Arial Black", Arial, sans-serif;
+	font-size: 1.5em;
+	height: 2em;
+}
+
+label {
+	font-weight: 900;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+}
+
+footer nav.footer {
+	float: left;
+}
+
+footer nav ul {
+	padding: 0;
+}
+
+footer nav ul li {
+	display: inline;
+	line-height: 60px;
+}
+
+footer nav ul li a {
+	font-weight: normal;
+	text-decoration: none;
+	line-height: 80px;
+}
+
+footer nav ul li a:hover {
+	text-decoration: none;
+}
+
+.social {
+	float: right;
+	line-height: 80px;
+}
