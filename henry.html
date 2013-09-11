@@ -4,11 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="description" content="">
 		<title>Search test</title>
+		<script src="js/jquery-1.10.2.min.js"></script>
 	</head>
 	<body>
-		<h1>Search</h1>
+		<h1>Name</h1>
 		<form id="form">
-			<input type="text" id="search" />
+			<input type="text" id="name" />
 			<h1>Region</h1>
 			<input type="text" id="region" />
 			<h1>Address</h1>
@@ -17,9 +18,7 @@
 			<input type="text" id="wine" /><br>
 			<button type="submit"></button>
 
-			<div id="results">
-
-			</div>
+			<div id="results"></div>
 		</form>
 		<script>
 			var wineries = [
@@ -75,16 +74,87 @@
 				}
 			];
 			
-			$("#form").on("submit", function() {
-				var search = document.getElementById("search");
-				var region = document.getElementById("region");
-				var address = document.getElementById("address");
-				var wine = document.getElementById("wine");
-				var results = [];
+			$("#form").on("submit", function(event) {
+				
+				event.preventDefault();
+				$("#results").html("");
+				
+				var search = document.getElementById("name").value;
+				var region = document.getElementById("region").value;
+				var address = document.getElementById("address").value;
+				var wine = document.getElementById("wine").value;
+				
+				var results = new Array();
+				results.push({winery: wineries[0], score: 1});
+				results.push({winery: wineries[1], score: 2});
+				results.push({winery: wineries[2], score: 3});
+				results.push({winery: wineries[3], score: 4});
 
+				for(var i=0;i<results.length;i++) {
+					
+					$("#results").append("<p>" + results[i].winery.name + "</p>");
+				}
+
+				$("#results").append("<br><br><br>");
+
+				results.sort(function(a,b) {
+					
+					return b.score - a.score;
+				});
+				
+				for(var i=0;i<results.length;i++) {
+					
+					$("#results").append("<p>" + results[i].winery.name + "</p>");
+				}
+				/*
 				for(var i=0;i<wineries.length;i++) {
-					$("#results").append("<p>"+wineries[i].location.address+"</p>");
-				}	
+
+					var currentWinery = wineries[i];
+					var found = true;
+					var rank = 0;
+					
+					if(search != "") {
+						
+						if(wineries[i].name.indexOf(search) != -1) {
+							rank++;
+						} else {
+							found = false;
+						}	
+					}
+
+					if((region != "") && (found)) {
+						
+						if(wineries[i].location[0].address.indexOf(address) != -1) {
+							rank++;
+						} else {
+							found = false;
+						}
+					}
+
+					if((address != "") && (found)) {
+						if(wineries[i].location[0].region.indexOf(region) != -1) {
+							rank++;
+						} else {
+							found = false;
+						}
+					}
+
+					if((wine != "") && (found)) {
+
+						if(wineries[i].name.indexOf(wine) != -1) {
+							rank++;
+						} else {
+							found = false;
+						}		
+					}
+
+					if(found) {
+						if(rank == 0) {
+							rank = 4;
+						}
+						results.push({winery: wineries[i], score: rank});
+					}
+				}*/
 			});
 		</script>
 	</body>
