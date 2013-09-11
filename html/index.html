@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		<title>MapApp - Welcome to MapApp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<link href="../css/bootstrap.css" rel="stylesheet">
+		
+		<script src="../js/jquery-1.10.2.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		
+		<style>
+			body {
+				font-size: 16px;
+				padding: 0;
+				margin: 0;
+				font-family:Helvettica,Arial,sans-serif;
+				text-rendering: optimizeLegibility;
+			}
+			
+			.container {
+				max-width: 1200px;
+			}
+			
+			nav.navbar {
+				border-radius: 0;
+			}
+			
+			.navbar-header {
+				padding: 0;
+			}
+
+			.navbar-brand {
+				font-size: 1.5em;
+				font-weight: 900;
+			}
+			
+			#main-container {
+				margin: 50px auto 0 auto;
+			}
+			
+			#main-container hgroup {
+				text-align: center;
+			}
+
+			#main-container hgroup h1 {
+				font-size: 3em;
+				font-weight: 900 !important;
+				font-family: "Arial Black", Arial, sans-serif;
+			}
+
+			#main-container hgroup h2 {
+				font-size: 2em;
+				font-weight: 600 !important;
+				text-transform: uppercase;
+				font-family: "Arial Black", Arial, sans-serif;
+			}
+			
+			#search {
+				text-align: center;
+				margin: 50px auto 50px auto;
+				max-width: 600px;
+			}
+			
+			input {
+				height: 40px;
+			}
+
+			input, select {
+				width: 100%;
+				margin: 0 0 25px 0;
+			}
+			
+			select {
+				padding: 11px 0 11px 0;
+				font-size: 1.2em;
+			}
+			
+			button.submit-button {
+				border: none;
+				width: 100%;
+				font-weight: 900;
+				text-transform: uppercase;
+				font-family: "Arial Black", Arial, sans-serif;
+				font-size: 1.5em;
+				height: 2em;
+			}
+			
+			label {
+				font-weight: 900;
+				font-size: 1.5em;
+				text-transform: uppercase;
+			}
+			
+			nav ul {
+				list-style-type: none;
+				margin: 0;
+			}
+			
+			footer nav.footer {
+				float: left;
+			}
+
+			footer nav ul {
+				padding: 0;
+			}
+
+			footer nav ul li {
+				display: inline;
+				line-height: 60px;
+			}
+
+			footer nav ul li a {
+				font-weight: normal;
+				text-decoration: none;
+				line-height: 80px;
+			}
+
+			footer nav ul li a:hover {
+				text-decoration: none;
+			}
+			
+			.social {
+				float: right;
+				line-height: 80px;
+			}
+			
+		</style>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">MapApp</a>
+				</div>
+				<div class="navbar-collapse collapse navbar-right">
+					<ul class="nav navbar-nav">
+					</ul>
+				</div><!--/.nav-collapse -->			
+			</div>
+		</nav>
+		
+		<div class="container">
+			<section id="main-container">
+				<hgroup>
+					<h1>MapApp</h1>
+					<h2>Plan your trip</h2>
+				</hgroup>
+				<section id="search">
+					<form id="search-destination-form" action="">
+						<div class="search-form-container">
+							<label>Your destination</label><br>
+							<select id="destination">
+								<option value="">Location</option>
+								<option value="eastwood">Eastwood</option>
+								<option value="hunter-valley">Hunter Valley</option>
+								<option value="hurstville">Hurstville</option>
+								<option value="maroubra">Maroubra</option>
+								<option value="sydney">Sydney</option>
+							</select>
+							<button type="submit" class="submit-button">Plan it !</button>
+						</div>
+					</form>
+				</section>
+			</section>
+		</div>
+		
+		<footer>
+			<div class="container">
+				<nav class="footer">
+					<ul>
+						<small>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Blog</a></li>
+						<li><a href="#">Contact</a></li>
+						</small>
+					</ul>
+				</nav>
+				<div class="social">
+					<a href="#"><img src="../img/facebook.png" alt="facebook"></a>
+					<a href="#"><img src="../img/twitter.png" alt="twitter"></a>
+					<a href="#"><img src="../img/linkedin.png" alt="linkedin"></a>
+					<a href="#"><img src="../img/rss.png" alt="rss"></a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
