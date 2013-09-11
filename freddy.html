@@ -53,20 +53,17 @@
 
 <div class="col-md-4 col-sm-12 col-xs-12">
 
-<button id="showMarkers" type="button" class="showMarkersBtn btn btn-small btn-primary">
-<i class="icon-map-marker"></i> Show Results on Map
-</button>
+    <button id="showMarkers" type="button" class="showMarkersBtn btn btn-small btn-primary">
+        <i class="icon-map-marker"></i> Show Results on Map
+    </button>
 
-
-
-		<script>
-        $(function() {
-			load();
-			$( "#results" ).sortable();
-			$( "#results" ).disableSelection();
-        });
-        </script>
-
+	<script>
+    $(function() {
+        load();
+        $("#results").sortable();
+        $("#results").disableSelection();
+    });
+    </script>
 
       <div class="resultsContainer">
 		  <ul id="results">
@@ -101,47 +98,8 @@
 				</div>
 			</li>
 			
-			
 		  </ul>
-      </div><!-- End demo -->
-	
-	
-<!--	
-    <div class="panel panel-default" draggable="true">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                Item 2
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                Item 2 Description
-            </div>
-        </div>
-    </div>
-	
-    <div class="panel panel-default" draggable="true">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                Item 3
-                </a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
-            <div class="panel-body">
-                Item 3 Description
-            </div>
-        </div>
-    </div>
-    
-</div>
--->
-
-
-
+      </div>
 </div>
 
 </body>
