@@ -24,6 +24,7 @@
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/modernizr.min.js"></script>
+	<script src="js/freddy.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -35,7 +36,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -53,39 +53,60 @@
 		var dragDrop = true;
 	} else {
 		var dragDrop = false;
-	}
+	}	
+	$(document).ready(function(event) {
+		$('#results').html("");	
+		for (var i = 0; i < wineries.length; i++) {
+			var html = '<div class="panel panel-default" draggable="true">';
+			html += '<div class="panel-heading">';
+			html += '<h2 class="panel-title">';
+			html += '<span class="pull-right">' + '<button id="'+i+'" type="button" class="saveBtn btn btn-small btn-success"><i class="icon-plus-sign"></i> Add to Itinerary</button>' + '</span>';
+			html += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#results" href="#collapse-'+i+'">';
+			html += '<h2> '+ wineries[i].name + '</h2>' + wineries[i].descriptionShort;
+			
+			
+			html += '</a>';
+			html += '</h2>';
+			html += '</div>'
+			html += '<div id="collapse-'+i+'" class="panel-collapse collapse">';
+			html += '<div class="panel-body">';
+			
+			html += wineries[i].name + '<br>';
+			html += wineries[i].website + '<br>';
+			html += 'Address: ' + wineries[i].location[0].address + '<br>';
+			html += 'Region: ' + wineries[i].location[0].region + '<br>';
+			
+			html += 'Opening hours (Mon-Fri): ' + wineries[i].openHours[0].monFri + '<br>';
+			html += 'Opening hours (Sat): ' + wineries[i].openHours[0].sat + '<br>';
+			
+			html += 'Wine: ' + wineries[i].wine + '<br>';
+			html += 'Rating: ' + wineries[i].rating + '<br>';
+			
+			
+			html += '</div></div></div>';		
+			$('#results').append(html);
+		}
+		$('.saveBtn').on('click', function(event) {
+			alert($(this).attr('id'));
+		});	
+	});
 </script>
 
 <div class="col-md-4 col-sm-12 col-xs-12">
-<script>
-$(document).ready(function() {
-	$.getJSON('db/dummy.json', function(data) {
-		var items = [];
-		$.each(data, function(key, val) {
-			items.push('<li id="' + key + '">' + val + '</li>');
-		});
-		$('<ul/>', {
-			'class': 'my-new-list',
-			html: items.join('')
-		}).appendTo('body');
-	});
-});
-</script>
 
 
 
+<button id="showMarkers" type="button" class="showMarkersBtn btn btn-small btn-primary">
+<i class="icon-map-marker"></i> Show Results on Map
+</button>
 
-
-
-
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="results">
     
     <div class="panel panel-default" draggable="true">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Winery 1
-                
+                Winery 1               
                 </a>
             </h4>
         </div>
@@ -94,8 +115,7 @@ $(document).ready(function() {
                 Item 1 Description
             </div>
         </div>
-    </div>
-    
+    </div>    
     
     <div class="panel panel-default" draggable="true">
         <div class="panel-heading">
@@ -111,8 +131,7 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
-    
-    
+	
     <div class="panel panel-default" draggable="true">
         <div class="panel-heading">
             <h4 class="panel-title">
