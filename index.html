@@ -57,14 +57,17 @@
 </script>
 
 <div class="col-md-4 col-sm-12 col-xs-12">
-<div id="panel">
-    <div id="showHide"><a href="#">TEST</a></div>
-</div>
 <script>
 $(document).ready(function() {
-	$('#showHide').on('click', function(event) {
-		
-		
+	$.getJSON('db/dummy.json', function(data) {
+		var items = [];
+		$.each(data, function(key, val) {
+			items.push('<li id="' + key + '">' + val + '</li>');
+		});
+		$('<ul/>', {
+			'class': 'my-new-list',
+			html: items.join('')
+		}).appendTo('body');
 	});
 });
 </script>
