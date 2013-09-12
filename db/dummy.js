@@ -268,7 +268,4 @@ var region ={
 		'longtitude' : 151.266700
 	};
 	
-	var itinerary = [
-	{'result':0},
-	{'result':2}
-	];
+	var itinerary = [0,2];

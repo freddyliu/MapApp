@@ -155,13 +155,13 @@ function getFullItinerary(){
 		});
 		var directionsService = new google.maps.DirectionsService();
 		
-		var start = results[itinerary[0].resultId].location;
+		var start = results[itinerary[0]].location;
 		start = new google.maps.LatLng(start.lat,start.long);
-		var end = results[itinerary[itinerary.length-1].resultId].location;
+		var end = results[itinerary[itinerary.length-1]].location;
 		end = new google.maps.LatLng(end.lat,end.long);
 		var waypoints = [];
 		for(var i=1;i<itinerary.length-1;i++){
-			var loc = results[itineary[i].resultId].location;
+			var loc = results[itineary[i]].location;
 			loc = new google.maps.LatLng(loc.lat,loc.long);
 			var waypoint = {
 				location:loc,
@@ -195,7 +195,7 @@ function showItineraryInfo(){
 		html += '<ul>Your Itinerary:';
 		var letter = 'A';
 		for(var i=0;i<itinerary.length;i++){
-			html += '<li>'+letter+': '+results[itinerary[i].resultId].name+'</li>';
+			html += '<li>'+letter+': '+results[itinerary[i]].name+'</li>';
 			letter = String.fromCharCode(letter.charCodeAt(0) + 1);
 		}
 		html += '</ul>';
@@ -249,7 +249,7 @@ function itineraryErrorHandler(status){
 function addToItinerary(index){
 	if(!inItinerary(index)){
 		if(itinerary.length<10){
-			itinerary.push({'resultId': index});
+			itinerary.push(index);
 		}else{
 			alert('Max waypoints (8) exceeded.');
 		}
@@ -263,7 +263,7 @@ function addToItinerary(index){
  */
 function inItinerary(index){
 	for(var i=0;i<itinerary.length;i++){
-		if(itinerary[i].resultId==index){
+		if(itinerary[i]==index){
 			return true;
 		}
 	}
