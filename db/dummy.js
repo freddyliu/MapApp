@@ -36,7 +36,9 @@ var wineries = [
 		"location": [
 			{
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
-				"region": "Hunter Valley"
+				"region": "Hunter Valley",
+				"lat": -32.656135,
+				"long": 151.351019
 			}
 		],
 		"tourAvailability": "Yes",
