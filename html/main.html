@@ -40,7 +40,7 @@
 						<div class="form-container">
 							<label>What are you looking for</label>
 							<input id="keywords" type="text" placeholder="" class="large-input" />
-							<button type="button" class="large-button" id="more-details">More Details</button>
+							<button type="button" class="large-button" id="more-details">more details</button>
 							<div id="search-details">
 								<label>Price per bottle</label>
 								<input type="text" class="large-input" id="price-select" />
@@ -99,6 +99,9 @@
 						</div>
 					</form>
 				</section>
+				<section id="results">
+					
+				</section>
 			</section>
 		</div>
 		
@@ -123,19 +126,70 @@
 		</footer>
 		
 		<script>
+			
+			var textSearch = true;
+			
 			$(document).ready(function(event) {
+				$("#search-details").hide();
 				
 				$("button#more-details").click(function() {
-					$("#").slideToggle("slow");
-					if($("button#advance").html() == "more options") {
-						$("button#advance").html("less options");
-						advance = true;
+					$("#search-details").slideToggle("slow");
+					if($("button#more-details").html() == "more details") {
+						$("button#more-details").html("less details");
+						textSearch = false;
 					} else {
-						$("button#advance").html("more options");
-						advance = false;
+						$("button#more-details").html("more details");
+						textSearch = true;
 					}
 				});
+				
+				$("main-search-form").on('submit', function(event) {
+					event.preventDefault();
+					search();
+				});
+			});
+			
+			function search() {
+				if(textSearch) {
+					
+				} else {
+					var t = getPreferred
+				}
 			}
+			
+			function getPrefferedPrice() {
+				var prefferedPrice = document.getElementById("price-select").value;
+				
+			}
+			
+			function getVarieties() {
+			
+			}
+			
+			function getType() {
+			
+			}
+			
+			function getSize() {
+			
+			}
+			
+			function getMade() {
+			
+			}
+			
+			function getTour() {
+			
+			}
+			
+			function getTastingPrice() {
+			
+			}
+			
+			function getSearchCriteria() {
+			
+			}
+			
 		</script>
 	</body>
 </html>
