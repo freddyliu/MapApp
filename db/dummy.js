@@ -33,14 +33,13 @@ var wineries = [
 				"sun": "10:00-22:00"	
 			}
 		],
-		"location": [
+		"location":
 			{
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley",
 				"lat": -32.656135,
-				"long": 151.351019
-			}
-		],
+				"long": 151.35
+			},
 		"tourAvailability": "Yes",
 		"tastingPrice": "Paid",
 		"madeAt": [

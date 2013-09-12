@@ -19,13 +19,12 @@ function createMap(region, container){
  */
 function drawCenterMarker(region){
 	var imageURL='http://jspace.com.au/gmap/img/markers/arrow.png';
-		
-	if(!markersArray[0] || makersArray[0].getTitle()!=region.name){	
+	if(!markersArray[0] || makersArray[0].getIcon()!=imageURL){	
 		pos = new google.maps.LatLng(region.latitude,region.longtitude);
 		var marker = new google.maps.Marker({
 			map: map,
 			title: region.name,
-			icon: 'http://jspace.com.au/gmap/img/markers/arrow.png',
+			icon: imageURL,
 			position: pos
 		});
 		markersArray.unshift(marker);
@@ -37,13 +36,14 @@ function drawCenterMarker(region){
  * input: result - the result object, index - index of the result object in the result list
  */
 function drawMarker(result, index){
-	var imageURL='http://jspace.com.au/gmap/img/markers/marker'+index+'.png';
+	var imageURL='http://jspace.com.au/gmap/img/markers/marker'+(index+1)+'.png';
+	pos = new google.maps.LatLng(result.location.lat,result.location.long);
 	var marker = new google.maps.Marker({
 		map: map,
-		title: place.name,
-		icon: image,
+		title: result.name,
+		icon: imageURL,
 		animation: google.maps.Animation.DROP,
-		position: place.geometry.location
+		position: pos
 	});	
 	markersArray.push(marker);	//store the marker in the markersArray
 }
@@ -52,7 +52,7 @@ function drawMarker(result, index){
  * draw all markers on the map for a list of search results
  */ 
 function drawAllMarkers(results){
-	for(var i=1;i<results.length;i++){
+	for(var i=0;i<results.length;i++){
 		drawMarker(results[i],i);
 	}
 }
@@ -62,7 +62,6 @@ function drawAllMarkers(results){
  */
 function zoomToFit(){
 	bounds = new google.maps.LatLngBounds ();
-
 	for(var i=0;i<markersArray.length;i++){
 		bounds.extend (markersArray[i].getPosition());
 	}
