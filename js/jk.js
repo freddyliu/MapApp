@@ -6,7 +6,7 @@ var results = wineries;		//search result array
 var itinerary = itinerary;	//itinerary array
 var directionsDisplay;
 var mapContainer = document.getElementById('map')	//html container element for displaying map
-var itineraryContainer = document.getElementById('itinerary');	//html container element for itinerary information
+var itineraryContainer = document.getElementById('itinerary_div');	//html container element for itinerary information
 
 /*
  * create a map base on user input location, and then
@@ -151,7 +151,6 @@ function getFullItinerary(){
 	}else{
 		directionsDisplay = new google.maps.DirectionsRenderer({
 			map: map,
-			hideRouteList: true
 		});
 		var directionsService = new google.maps.DirectionsService();
 		
@@ -161,7 +160,7 @@ function getFullItinerary(){
 		end = new google.maps.LatLng(end.lat,end.long);
 		var waypoints = [];
 		for(var i=1;i<itinerary.length-1;i++){
-			var loc = results[itineary[i]].location;
+			var loc = results[itinerary[i]].location;
 			loc = new google.maps.LatLng(loc.lat,loc.long);
 			var waypoint = {
 				location:loc,
@@ -192,15 +191,16 @@ function getFullItinerary(){
 function showItineraryInfo(){
 	if(directionsDisplay){
 		var html = '';
-		html += '<ul>Your Itinerary:';
+		html += '<div id="intinerary"><ul>Your Itinerary:';
 		var letter = 'A';
 		for(var i=0;i<itinerary.length;i++){
 			html += '<li>'+letter+': '+results[itinerary[i]].name+'</li>';
 			letter = String.fromCharCode(letter.charCodeAt(0) + 1);
 		}
-		html += '</ul>';
-		$('#itinerary').append(html);
-		directionsDisplay.setPanel(itineraryContainer);
+		html += '</ul></div>';
+		
+		itineraryContainer.innerHTML = html;
+		directionsDisplay.setPanel(document.getElementById('intinerary'));
 	}
 }
 
@@ -211,6 +211,7 @@ function clearItinerary(){
 	if(directionsDisplay){
 		directionsDisplay.setMap(null);
 	}
+	itineraryContainer.innerHTML = '';
 }
 
 /*
@@ -283,10 +284,9 @@ function appShowAllMarkersOnMap(){
 
 function appShowIntinery(){
 	createMap();
-	destroyMarkers();
-	destroyInfo();
 	clearItinerary();
 	drawCenterMarker();
+	destroyMarkers();
 	getFullItinerary();
 	showItineraryInfo();
 }
