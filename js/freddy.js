@@ -110,9 +110,9 @@ When clicked on again, collapse
 			
 			html += '<strong><i class="icon-time icon-small"></i> Opening Hours:</strong><br>';
 			html += '<strong>Mon:</strong> '+wineries[i].openDays.mon+'<br>';
-			html += '<strong>Tues:</strong> '+wineries[i].openDays.tues+'<br>';
+			html += '<strong>Tues:</strong> '+wineries[i].openDays.tue+'<br>';
 			html += '<strong>Wed:</strong> '+wineries[i].openDays.wed+'<br>';
-			html += '<strong>Thurs:</strong> '+wineries[i].openDays.thurs+'<br>';
+			html += '<strong>Thurs:</strong> '+wineries[i].openDays.thu+'<br>';
 			html += '<strong>Fri:</strong> '+wineries[i].openDays.fri+'<br>';
 			html += '<strong>Sat:</strong> '+wineries[i].openDays.sat+'<br>';
 			html += '<strong>Sun:</strong> '+wineries[i].openDays.sun+'<br>';		
