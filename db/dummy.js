@@ -143,7 +143,6 @@ var region ={
 		'latitude' : -32.750020,
 		'longtitude' : 151.266700
 	};
-<<<<<<< HEAD
 	
 var itinerary= [
 	{
@@ -153,5 +152,3 @@ var itinerary= [
 		'resultId': 2
 	}
 ];
-=======
->>>>>>> looks slightly better, renamed html to ticket number, choosing a region works by looking at a cookie, but this can be changed in the future

@@ -79,6 +79,7 @@
 			var textSearch = true;
 			var region = "";
 			var numRules = 0;
+			var nextID = 0;
 			
 			$(document).ready(function(event) {
 				region = "Hunter Valley";
@@ -91,7 +92,8 @@
 						$("#search-behaviour").append("<label>search type</label><select id='behaviour-select'><option value='all'>all</option><option value='any'>any</option></select>");
 					}
 					
-					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + numRules + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + numRules + "'><option value='is'>is</option><option value='is-not'>is not</option></select><select class='attribute-select' id='attribute-select-" + numRules + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
+					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + nextID + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + nextID + "'><option value='is'>is</option><option value='is-not'>is not</option></select><select class='attribute-select' id='attribute-select-" + nextID + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
+					nextID++;
 					numRules++;
 				});
 
@@ -102,6 +104,7 @@
 			});
 			
 			function switchCriteria(criteria) {
+				console.log($("#criteria-select-" + numRules).value);
 				var ruleIndex = criteria.id.split("-")[2];
 				
 				switch(criteria.options[criteria.selectedIndex].value) {
@@ -169,68 +172,9 @@
 			function allSearch() {
 				var results = new Array();
 			
-				for(var i=0;i<wineries.length;i++) {
-					if(wineries[i].location.region == region) {
-						var found = true;
-						
-						if((day != "") && !(day in wineries[i].openDays)) {
-							found = false;
-						}
-						
-						if((prefferedPrice != "") && found) {
-							if(!(prefferedPrice in wineries[i].price)) {
-								found = false;
-							}
-						}
-						
-						if((varieties.length > 0) && found) {
-							for(var i=0;i<varieties.length;i++) {
-								if(!(varieties[i] in wineries[i].wineVariety)) {
-									found = false;
-									break;
-								}
-							}
-						}
-						
-						if((type.length > 0) && found) {
-							for(var i=0;type.length;i++) {
-								if(!(type[i] in wineries[i].wineType)) {
-									found = false;
-									break;
-								}
-							}
-						}
-						
-						if((size != "") && found) {
-							if(!(size in wineries[i].wineSize)) {
-								found = false;
-							}
-						}
-						
-						if((made != "") && found) {
-							if(!(made in wineries[i].madeAt)) {
-								found = false;
-							}
-						}
-						
-						if((tour != "any") && found) {
-							if(wineries[i].tourAvailability != tour) {
-								found = false;
-							}
-						}
-						
-						if((tastingPrice != "any") && found) {
-							if(wineries[i].tastingPrice != tastingPrice) {
-								found = false;
-							}
-						}
-						
-						if(found) {
-							results.push(wineries[i]);
-						}
-					}
+				for(var i=0;i<numRules;i++) {
+					
 				}
-				
 				return results;
 			}
 			
