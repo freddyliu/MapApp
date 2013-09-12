@@ -81,17 +81,4 @@ var region ={
 		'name' : 'Hunter Valley',
 		'latitude' : -32.700000,
 		'longtitude' : 151.266700
-<<<<<<< HEAD
 	};
-	
-var itinerary= [
-	{
-		'resultId': 0
-	},
-	{
-		'resultId': 2
-	}
-];
-=======
-	};
->>>>>>> changed data again, output is now able to output henry's preferred format
