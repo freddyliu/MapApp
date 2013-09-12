@@ -50,7 +50,7 @@ h2 {
 	max-width: 500px;
 }
 
-input {
+input.large-input {
 	height: 40px;
 }
 
