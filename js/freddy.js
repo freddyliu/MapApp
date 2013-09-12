@@ -52,7 +52,7 @@ When clicked on again, collapse
 	}
 
 	function loadResults(wineries, mode) {
-		$('#results').html("");	
+		$('#results').html("");
 		for (var i = 0; i < wineries.length; i++) {
 			if (mode == 'searchResults') {
 				var index = (i+1) + '. ';
@@ -131,8 +131,12 @@ When clicked on again, collapse
 			$('#results').sortable();
         	//$('#results').disableSelection();
 			$('.removeBtn').on('click', function(event) {
-				var i = $(this).attr('id').split('-');				
-				$('#panel-'+i[1]).hide('slow', function(){ ('#panel-'+i[1]).remove(); });
+				var i = $(this).attr('id').split('-');
+				i = i[1];
+				$('#panel-'+i).hide('slow', function(event) {
+					('#panel-'+i).remove();
+				});
+				$('#results').html('Empty! <a href="freddy-229.html">Search again?</a>');
 			});
 		}
 		$(function() {
