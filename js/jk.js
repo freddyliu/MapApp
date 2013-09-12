@@ -87,9 +87,10 @@ function zoomToFit(){
 
 /*
  * show a full itinerary which go through all the markers
- * input: results - result list, itinerary - itinerary list, container - the html container for displaying full itinerary infomation
+ * input: results - result list, itinerary - itinerary list, container - the html container for displaying full itinerary information
+ * returns DirectionRenderer object in the end
  */
-function showFullItinerary(){
+function getFullItinerary(){
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
 	directionsDisplay.setMap(map);
@@ -119,8 +120,19 @@ function showFullItinerary(){
 			itineraryErrorHandler(status);
 		}
 	});
+	return directionsDisplay;
 }
 
+/*
+ * remove itinerary from the map
+ */
+function clearItinerary(){
+	 getFullItinerary().setMap(null);
+}
+
+/*
+ * itinerary request error handler
+ */
 function itineraryErrorHandler(status){
 	switch(status){
 		case google.maps.DirectionsStatus.NOT_FOUND:
