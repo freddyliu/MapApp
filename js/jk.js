@@ -14,6 +14,9 @@ function createMap(region, container){
 	});
 }
 
+/*
+ * draw a marker in the center of the search region
+ */
 function drawCenterMarker(region){
 	var imageURL='http://jspace.com.au/gmap/img/markers/arrow.png';
 		
@@ -41,9 +44,17 @@ function drawMarker(result, index){
 		icon: image,
 		animation: google.maps.Animation.DROP,
 		position: place.geometry.location
-	});
-	
+	});	
 	markersArray.push(marker);	//store the marker in the markersArray
+}
+
+/*
+ * draw all markers on the map for a list of search results
+ */ 
+function drawAllMarkers(results){
+	for(var i=1;i<results.length;i++){
+		drawMarker(results[i],i);
+	}
 }
 
 /*
