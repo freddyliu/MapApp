@@ -4,6 +4,7 @@ var markersArray=[];	//for storing markers for referencing purpose
 var infoArray=[];	//for storing infowindows for referencing purpose
 var results = wineries;		//search result array
 var itinerary = itinerary;	//itinerary array
+var directionsDisplay;
 var mapContainer = document.getElementById('map')	//html container element for displaying map
 var itineraryContainer = document.getElementById('itinerary');	//html container element for itinerary information
 
@@ -12,12 +13,14 @@ var itineraryContainer = document.getElementById('itinerary');	//html container 
  * add it to a specific container in the html file.
  */
 function createMap(){
-	pos = new google.maps.LatLng(region.latitude,region.longtitude);
-	map = new google.maps.Map(mapContainer, {
-		mapTypeId: google.maps.MapTypeId.ROADMAP,	//the default map type
-		zoom: 17,	//the default zoom level
-		center: pos
-	});
+	if(!map){
+		pos = new google.maps.LatLng(region.latitude,region.longtitude);
+		map = new google.maps.Map(mapContainer, {
+			mapTypeId: google.maps.MapTypeId.ROADMAP,	//the default map type
+			zoom: 17,	//the default zoom level
+			center: pos
+		});
+	}
 }
 
 /*
@@ -85,7 +88,7 @@ function setMarkerInfo(marker,index){
 }
 
 /*
- * remove all markers from the map
+ * hide all markers from the map
  */ 
 function clearMarkers() {
 	if (markersArray){
@@ -100,10 +103,10 @@ function clearMarkers() {
  */ 
 function destroyMarkers() {
 	clearMarkers();
-	markersArray.length = 1;
+	markersArray = [];
 }
 /*
- * remove all infowindows from the map
+ * hide all infowindows from the map
  */ 
 function clearInfo(){
 	if (infoArray) {
@@ -126,7 +129,7 @@ function destroyInfo(){
  * Note: default travel mode: driving
  */
 function zoomToFit(){
-	bounds = new google.maps.LatLngBounds ();
+	var bounds = new google.maps.LatLngBounds ();
 	for(var i=0;i<markersArray.length;i++){
 		bounds.extend (markersArray[i].getPosition());
 	}
@@ -139,43 +142,71 @@ function zoomToFit(){
  * returns DirectionRenderer object in the end
  */
 function getFullItinerary(){
-	var directionsDisplay = new google.maps.DirectionsRenderer();
-	var directionsService = new google.maps.DirectionsService();
-	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(itineraryContainer);
-	
-	var start = markersArray[itinerary[0].resultId+1].getPosition();
-	var end = markersArray[itinerary[itinerary.length-1].resultId+1].getPosition();
-	var waypoints = [];
-	for(var i=1;i<itinerary.length-1;i++){
-		var waypoint = {
-			location:markersArray[itinerary[i].resultId+1].getPosition(),
-			stopover:true
+	if(itinerary.length==0){
+		//if the itinerary array is empty
+		alert('There\'s nothing in your itinerary list yet.');
+	}else if(itinerary.length==1){
+		//if the itinerary array only have one item
+		alert('There\'s only one item in your itnerary list.');
+	}else{
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		var directionsService = new google.maps.DirectionsService();
+		directionsDisplay.setMap(map);
+		
+		var start = results[itinerary[0].resultId].location;
+		start = new google.maps.LatLng(start.lat,start.lon);
+		var end = results[itinerary[itinerary.length-1].resultId].location;
+		end = new google.maps.LatLng(end.lat,end.lon);
+		var waypoints = [];
+		for(var i=1;i<itinerary.length-1;i++){
+			var loc = results[itineary[i].resultId].location;
+			loc = new google.maps.LatLng(loc.lat,loc.lon);
+			var waypoint = {
+				location:loc,
+				stopover:true
+			}
+			waypoints.push(waypoint);
 		}
-		waypoints.push(waypoint);
+		var request = {
+			origin:start,
+			destination:end,
+			waypoints :waypoints,
+			travelMode: google.maps.DirectionsTravelMode.DRIVING	//default travel method: driving
+		};
+		
+		directionsService.route(request, function(response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(response);
+			}else{
+				itineraryErrorHandler(status);
+			}
+		});
 	}
-	var request = {
-		origin:start,
-		destination:end,
-		waypoints :waypoints,
-		travelMode: google.maps.DirectionsTravelMode.DRIVING	//default travel method: driving
-	};
-	
-	directionsService.route(request, function(response, status) {
-		if (status == google.maps.DirectionsStatus.OK) {
-			directionsDisplay.setDirections(response);
-		}else{
-			itineraryErrorHandler(status);
-		}
-	});
-	return directionsDisplay;
+}
+
+/*
+ * show itinerary info in the 'itineraryContainer' html container
+ */
+function showItineraryInfo(){
+	var html = '';
+	html += '<ul>Your Itinerary:';
+	var letter = 'A';
+	for(var i=0;i<itinerary.length;i++){
+		html += '<li>'+letter+': '+results[itinerary[i].resultId].name+'</li>';
+		letter = String.fromCharCode(letter.charCodeAt(0) + 1);
+	}
+	html += '</ul>';
+	$('#itinerary').append(html);
+	directionsDisplay.setPanel(itineraryContainer);
 }
 
 /*
  * remove itinerary from the map
  */
 function clearItinerary(){
-	 getFullItinerary().setMap(null);
+	if(directionsDisplay){
+		directionsDisplay.setMap(null);
+	}
 }
 
 /*
@@ -234,4 +265,26 @@ function inItinerary(index){
 	}
 	return false;
 }
+
+/*======================================================= app control =======================================================*/
+function appShowAllMarkersOnMap(){
+	createMap();
+	destroyMarkers();
+	destroyInfo();
+	clearItinerary();
+	drawCenterMarker();
+	drawAllMarkers();
+	zoomToFit();
+}
+
+function appShowIntinery(){
+	createMap();
+	destroyMarkers();
+	destroyInfo();
+	clearItinerary();
+	drawCenterMarker();
+	getFullItinerary();
+	showItineraryInfo();
+}
+/*======================================================= !app control =======================================================*/
 
