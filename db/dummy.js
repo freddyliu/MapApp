@@ -19,11 +19,11 @@ price IS $10-$20
 */
 var wineries = [
 	{ 
+		"id": 1,
 		"name": "Hunterwine",
 		"descriptionShort": "Best wine in Hunter Valley",
 		"website": "www.hunterwine.com.au",
-		"openDays": [
-			{
+		"openDays": {
 				"mon": "10:00-22:00",
 				"tues": "10:00-22:00",
 				"wed": "10:00-22:00",
@@ -31,15 +31,13 @@ var wineries = [
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
 				"sun": "10:00-22:00"	
-			}
-		],
-		"location":
-			{
+		},
+		"location": {			
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley",
 				"lat": -32.656135,
-				"long": 151.35
-			},
+				"long": 151.351019			
+		},
 		"tourAvailability": "Yes",
 		"tastingPrice": "Paid",
 		"madeAt": [
