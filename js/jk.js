@@ -1,6 +1,7 @@
 var region = region;
 var map;	//map object
-var markersArray=[];	////for storing markers for referencing purpose
+var markersArray=[];	//for storing markers for referencing purpose
+var infoArray=[];
 var results = wineries;
 var itinerary = itinerary;
 var mapContainer = document.getElementById('map')
@@ -42,7 +43,7 @@ function drawCenterMarker(){
  */
 function drawMarker(result, index){
 	var imageURL='http://jspace.com.au/gmap/img/markers/marker'+(index+1)+'.png';
-	pos = new google.maps.LatLng(result.location.lat,result.location.long);
+	pos = new google.maps.LatLng(result.location.lat,result.location.lon);
 	var marker = new google.maps.Marker({
 		map: map,
 		title: result.name,
@@ -50,6 +51,7 @@ function drawMarker(result, index){
 		animation: google.maps.Animation.DROP,
 		position: pos
 	});	
+	setMarkerInfo(marker,index);
 	markersArray.push(marker);	//store the marker in the markersArray
 }
 
@@ -62,13 +64,35 @@ function drawAllMarkers(){
 	}
 }
 
+function setMarkerInfo(marker,index){
+		var info = new google.maps.InfoWindow();
+		var content = results[index].name;
+			content += '<br />Address: ' + results[index].location.address;
+			info.setContent(content);
+		infoArray.push(info);
+		google.maps.event.addListener(marker, 'click', function(){ 
+			clearInfo();
+			info.open(map,this);
+			map.setCenter(this.getPosition());	//Re-center the map
+		});
+	
+}
+
 /*
  * remove all markers from the map
  */ 
 function clearMarkers() {
-	if (markersArray) {
+	if (markersArray){
 		for(var i=1;i<markersArray.length;i++){
 			markersArray[i].setMap(null);
+		}
+	}
+}
+
+function clearInfo(){
+	if (infoArray) {
+		for(var i=0;i<infoArray.length;i++){
+			infoArray[i].close();
 		}
 	}
 }
