@@ -121,5 +121,21 @@
 				</div>
 			</div>
 		</footer>
+		
+		<script>
+			$(document).ready(function(event) {
+				
+				$("button#more-details").click(function() {
+					$("#").slideToggle("slow");
+					if($("button#advance").html() == "more options") {
+						$("button#advance").html("less options");
+						advance = true;
+					} else {
+						$("button#advance").html("more options");
+						advance = false;
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
