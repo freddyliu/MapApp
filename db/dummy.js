@@ -143,5 +143,3 @@ var region ={
 		'latitude' : -32.700000,
 		'longtitude' : 151.266700
 	};
-	
-var I
