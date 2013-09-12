@@ -34,29 +34,29 @@ var wineries = [
 				"lat": -32.656135,
 				"long": 151.351019			
 		},
-		"tourAvailability": "Yes",
-		"tastingPrice": "Paid",
+		"tourAvailability": "yes",
+		"tastingPrice": "paid",
 		"madeAt": {
 			"local": undefined
 		},
-		"wineSize": [
+		"wineSize": {
 			"small": undefined
-		],
-		"wineType": [
+		},
+		"wineType": {
 			"dessert": undefined, 
 			"fortified": undefined,
 			"sparkling": undefined
-		],
-		"wineVariety": [
+		},
+		"wineVariety": {
 			"blend": undefined, 
 			"cabernet-sauvignon": undefined, 
 			"chardonnay": undefined
-		],
-		"price": [
+		},
+		"price": {
 			"$10 - $20": undefined, 
 			"$21 - $30": undefined, 
 			"$31 - $40": undefined
-		],
+		},
 		"rating": 3
 	},
 	{ 
@@ -76,25 +76,25 @@ var wineries = [
 				"lat": -32.656122,
 				"long": 151.331019			
 		},
-		"tourAvailability": "Yes",
-		"tastingPrice": "Paid",
-		"madeAt": [
+		"tourAvailability": "yes",
+		"tastingPrice": "free",
+		"madeAt": {
 			"local": undefined
-		],
-		"wineSize": [
+		},
+		"wineSize": {
 			"medium": undefined
-		],
-		"wineType": [
+		},
+		"wineType": {
 			"red": undefined, 
 			"white": undefined
-		],
-		"wineVariety": [
+		},
+		"wineVariety": {
 			"semillon": undefined, 
 			"shiraz": undefined
-		],
-		"price": [
+		},
+		"price": {
 			"$31 - $40": undefined
-		],
+		},
 		"rating": 3
 	},
 	{ 
@@ -113,25 +113,25 @@ var wineries = [
 				"lat": -34.656135,
 				"long": 156.351019			
 		},
-		"tourAvailability": "Yes",
-		"tastingPrice": "Paid",
-		"madeAt": [
+		"tourAvailability": "no",
+		"tastingPrice": "paid",
+		"madeAt": {
 			"diff": undefined
-		],
-		"wineSize": [
+		},
+		"wineSize": {
 			"large": undefined
-		],
-		"wineType": [
+		},
+		"wineType": {
 			"organic": undefined
-		],
-		"wineVariety": [
+		},
+		"wineVariety": {
 			"rose": undefined
-		],
-		"price": [
+		},
+		"price": {
 			"$10 - $20": undefined, 
 			"$21 - $30": undefined, 
 			"$31 - $40": undefined
-		],
+		},
 		"rating": 3
 	}
 ];

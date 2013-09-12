@@ -82,20 +82,20 @@
 								</ul>
 								<label>Tour availability</label>
 								<ul class="tour-select">
-									<li>Any <input type="radio" name="tour-radio" class="type-radio" id="any-check" value="any-tour" /></li>
-									<li>Yes <input type="radio" name="tour-radio" class="type-radio" id="yes-check" value="yes-tour" /></li>
-									<li>No <input type="radio" name="tour-radio" class="type-radio" id="no-check" value="no-tour" /></li>
+									<li>Any <input type="radio" name="tour-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Yes <input type="radio" name="tour-radio" class="type-radio" id="yes-check" value="yes" /></li>
+									<li>No <input type="radio" name="tour-radio" class="type-radio" id="no-check" value="no" /></li>
 								</ul>
 								<label>Tasting price</label>
 								<ul class="tasting-select">
-									<li>Any <input type="radio" name="tasting-radio" class="type-radio" id="any-check" value="any-tasting" /></li>
-									<li>Free <input type="radio" name="tasting-radio" class="type-radio" id="free-check" value="free-tasting" /></li>
-									<li>Paid <input type="radio" name="tasting-radio" class="type-radio" id="paid-check" value="paid-tasting" /></li>
+									<li>Any <input type="radio" name="tasting-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Free <input type="radio" name="tasting-radio" class="type-radio" id="free-check" value="free" /></li>
+									<li>Paid <input type="radio" name="tasting-radio" class="type-radio" id="paid-check" value="paid" /></li>
 								</ul>
 								<label>Search criteria</label>
 								<ul class="criteria-select">
-									<li>All <input type="radio" name="criteria-radio" class="type-radio" id="all-check" value="all-criteria" /></li>
-									<li>Any <input type="radio" name="criteria-radio" class="type-radio" id="any-check" value="any-criteria" /></li>
+									<li>All <input type="radio" name="criteria-radio" class="type-radio" id="all-check" value="all" /></li>
+									<li>Any <input type="radio" name="criteria-radio" class="type-radio" id="any-check" value="any" /></li>
 								</ul>
 							</div>
 							<button type="submit" class="large-button">Search</button>
@@ -170,33 +170,144 @@
 					
 					if(searchCriteria == "all-check") {
 						//Filter using all search criterias
-						
+						var results = allSearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice);
 					} else {
 						//Filter using any criteria
+						var results = anySearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice);
 					}
 				}
 			}
 			
 			function allSearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
+				var results = new Array();
+			
 				for(var i=0;i<wineries.length;i++) {
 					if(wineries[i].location.region == region) {
-						boolean found = true;
+						var found = true;
 						
 						if((day != "") && !(day in wineries[i].openDays)) {
 							found = false;
 						}
 						
 						if((prefferedPrice != "") && found) {
-							for(int i=0;i<wineries[i].price.length;i++) {
-								
+							if(!(prefferedPrice in wineries[i].price)) {
+								found = false;
 							}
+						}
+						
+						if((varieties.length > 0) && found) {
+							for(var i=0;i<varieties.length;i++) {
+								if(!(varieties[i] in wineries[i].wineVariety)) {
+									found = false;
+									break;
+								}
+							}
+						}
+						
+						if((type.length > 0) && found) {
+							for(var i=0;type.length;i++) {
+								if(!(type[i] in wineries[i].wineType)) {
+									found = false;
+									break;
+								}
+							}
+						}
+						
+						if((size != "") && found) {
+							if(!(size in wineries[i].wineSize)) {
+								found = false;
+							}
+						}
+						
+						if((made != "") && found) {
+							if(!(made in wineries[i].madeAt)) {
+								found = false;
+							}
+						}
+						
+						if((tour != "any") && found) {
+							if(wineries[i].tourAvailability != tour) {
+								found = false;
+							}
+						}
+						
+						if((tastingPrice != "any") && found) {
+							if(wineries[i].tastingPrice != tastingPrice) {
+								found = false;
+							}
+						}
+						
+						if(found) {
+							results.push(wineries[i]);
 						}
 					}
 				}
+				
+				return results;
 			}
 			
 			function anySearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
-			
+				var results = new Array();
+				
+				for(var i=0;i<wineries.length;i++) {
+					if(wineries[i].location.region == region) {
+						var score = 0;
+						
+						if((day != "") && (day in wineries[i].openDays)) {
+							score++;
+						}
+						
+						if(prefferedPrice != "") {
+							if(prefferedPrice in wineries[i].price) {
+								score++;
+							}
+						}
+						
+						if(varieties.length > 0) {
+							for(var i=0;i<varieties.length;i++) {
+								if(varieties[i] in wineries[i].wineVariety) {
+									score++;
+								}
+							}
+						}
+						
+						if(type.length > 0) {
+							for(var i=0;type.length;i++) {
+								if(type[i] in wineries[i].wineType) {
+									score++;
+								}
+							}
+						}
+						
+						if(size != "") {
+							if(size in wineries[i].wineSize) {
+								score++;
+							}
+						}
+						
+						if(made != "") {
+							if(made in wineries[i].madeAt) {
+								score++;
+							}
+						}
+						
+						if(tour != "any") {
+							if(wineries[i].tourAvailability == tour) {
+								score++;
+							}
+						}
+						
+						if(tastingPrice != "any") {
+							if(wineries[i].tastingPrice == tastingPrice) {
+								score++;
+							}
+						}
+						
+						results.push({"winery": wineries[i], "score": score});
+					}
+				}
+				
+				return results;
 			}
 			
 			function getDay() {
@@ -211,14 +322,14 @@
 				var varieties = new Array();
 				
 				if(document.getElementById("blend-check").checked) { varieties.push("blend") };
-				if(document.getElementById("cabernet-check").checked) { varieties.push("cabernet") };
+				if(document.getElementById("cabernet-check").checked) { varieties.push("cabernet-sauvignon") };
 				if(document.getElementById("chardonnay-check").checked) { varieties.push("chardonnay") };
 				if(document.getElementById("merlot-check").checked) { varieties.push("merlot") };
 				if(document.getElementById("moscato-check").checked) { varieties.push("moscato") };
-				if(document.getElementById("pinot-check").checked) { varieties.push("pinot") };
+				if(document.getElementById("pinot-check").checked) { varieties.push("pinot-noir") };
 				if(document.getElementById("riesling-check").checked) { varieties.push("riesling") };
 				if(document.getElementById("rose-check").checked) { varieties.push("rose") };
-				if(document.getElementById("sauvignon-check").checked) { varieties.push("sauvignon") };
+				if(document.getElementById("sauvignon-check").checked) { varieties.push("sauvignon-blanc") };
 				if(document.getElementById("semillon-check").checked) { varieties.push("semillon") };
 				if(document.getElementById("shiraz-check").checked) { varieties.push("shiraz") };
 				if(document.getElementById("verdelho-check").checked) { varieties.push("verdelho") };
