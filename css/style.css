@@ -7,8 +7,24 @@
 	-khtml-user-drag: element;
 	-webkit-user-drag: element;
 }
-#results {
-	list-style: none;
+.searchResults {
+	list-style-type:decimal;
+	list-style-position:inside;
 	padding-left: 0;
 	margin-left: 0;	
+}
+.itineraryResults {
+	list-style-type:upper-alpha;
+	list-style-position:inside;
+	padding-left: 0;
+	margin-left: 0;	
+}
+span.stars, span.stars span {
+    display: inline-block;
+    background: url(../img/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+span.stars span {
+    background-position: 0 0;
 }
