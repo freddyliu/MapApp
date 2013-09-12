@@ -12,6 +12,7 @@
 		
 		<script src="../js/jquery-1.10.2.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
+		<script src="../db/dummy.js"></script>
 	</head>
 	
 	<body>
@@ -75,9 +76,9 @@
 								<input type="text" class="large-input" id="size-select" />
 								<label>Made at</label>
 								<ul class="made-select">
-									<li>Any <input type="radio" name="made-radio" class="type-radio" id="any-check" value="any-made" /></li>
-									<li>Locally <input type="radio" name="made-radio" class="type-radio" id="local-check" value="local-made" /></li>
-									<li>Different location <input type="radio" name="made-radio" class="type-radio" id="diff-check" value="diff-made" /></li>
+									<li>Any <input type="radio" name="made-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Locally <input type="radio" name="made-radio" class="type-radio" id="local-check" value="local" /></li>
+									<li>Different location <input type="radio" name="made-radio" class="type-radio" id="diff-check" value="diff" /></li>
 								</ul>
 								<label>Tour availability</label>
 								<ul class="tour-select">
@@ -130,9 +131,11 @@
 		<script>
 			
 			var textSearch = true;
+			var region = "";
 			
 			$(document).ready(function(event) {
 				$("#search-details").hide();
+				region = "Hunter Valley";
 				
 				$("button#more-details").click(function() {
 					$("#search-details").slideToggle("slow");
@@ -147,19 +150,19 @@
 				
 				$("#main-search-form").on('submit', function(event) {
 					event.preventDefault();
-					search();
+					search(region);
 				});
 			});
 			
-			function search() {
+			function search(region) {
 				if(textSearch) {
 					
 				} else {
-					var days = getDay(); //days array
-					var prefferedPrice = getPrefferedPrice(); //price array
+					var day = getDay();
+					var prefferedPrice = getPrefferedPrice();
 					var varieties = getVarieties(); //varieties array
 					var type = getType(); //type array
-					var size = getSize(); //size array
+					var size = getSize();
 					var made = getMade();
 					var tour = getTour();
 					var tastingPrice = getTastingPrice();
@@ -174,20 +177,34 @@
 				}
 			}
 			
-			function allSearch(days, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
-				
+			function allSearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
+				for(var i=0;i<wineries.length;i++) {
+					if(wineries[i].location.region == region) {
+						boolean found = true;
+						
+						if((day != "") && !(day in wineries[i].openDays)) {
+							found = false;
+						}
+						
+						if((prefferedPrice != "") && found) {
+							for(int i=0;i<wineries[i].price.length;i++) {
+								
+							}
+						}
+					}
+				}
 			}
 			
-			function anySearch(days, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
+			function anySearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
 			
 			}
 			
 			function getDay() {
-				return document.getElementById("day-select").value.split("-");
+				return document.getElementById("day-select").value;
 			}
 			
 			function getPrefferedPrice() {
-				return document.getElementById("price-select").value.split("-");
+				return document.getElementById("price-select").value;
 			}
 			
 			function getVarieties() {
@@ -224,7 +241,7 @@
 			}
 			
 			function getSize() {
-				return document.getElementById("size-select").value.split("-");
+				return document.getElementById("size-select").value;
 			}
 			
 			function getMade() {

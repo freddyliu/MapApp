@@ -26,11 +26,7 @@ var wineries = [
 		"openDays": {
 				"mon": "10:00-22:00",
 				"tues": "10:00-22:00",
-				"wed": "10:00-22:00",
-				"thurs": "10:00-22:00",
-				"fri": "10:00-22:00",
-				"sat": "10:00-22:00",
-				"sun": "10:00-22:00"	
+				"wed": "10:00-22:00"
 		},
 		"location": {			
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
@@ -40,20 +36,26 @@ var wineries = [
 		},
 		"tourAvailability": "Yes",
 		"tastingPrice": "Paid",
-		"madeAt": [
-			"Locally", "Different Location"
-		],
+		"madeAt": {
+			"local": undefined
+		},
 		"wineSize": [
-			"Small", "Medium"
+			"small": undefined
 		],
 		"wineType": [
-			"Dessert", "Fortified", "Sparkling"
+			"dessert": undefined, 
+			"fortified": undefined,
+			"sparkling": undefined
 		],
 		"wineVariety": [
-			"Blend", "Cabernet Sauvignon", "Chardonnay"
+			"blend": undefined, 
+			"cabernet-sauvignon": undefined, 
+			"chardonnay": undefined
 		],
 		"price": [
-			"$10 - $20", "$21 - $30", "$31 - $40"
+			"$10 - $20": undefined, 
+			"$21 - $30": undefined, 
+			"$31 - $40": undefined
 		],
 		"rating": 3
 	},
@@ -63,9 +65,6 @@ var wineries = [
 		"descriptionShort": "Best wine to get you drunk",
 		"website": "www.blah.com.au",
 		"openDays": {
-				"mon": "10:00-22:00",
-				"tues": "10:00-22:00",
-				"wed": "10:00-22:00",
 				"thurs": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
@@ -80,19 +79,21 @@ var wineries = [
 		"tourAvailability": "Yes",
 		"tastingPrice": "Paid",
 		"madeAt": [
-			"Locally", "Different Location"
+			"local": undefined
 		],
 		"wineSize": [
-			"Small", "Medium"
+			"medium": undefined
 		],
 		"wineType": [
-			"Dessert", "Fortified", "Sparkling"
+			"red": undefined, 
+			"white": undefined
 		],
 		"wineVariety": [
-			"Blend", "Cabernet Sauvignon", "Chardonnay"
+			"semillon": undefined, 
+			"shiraz": undefined
 		],
 		"price": [
-			"$10 - $20", "$21 - $30", "$31 - $40"
+			"$31 - $40": undefined
 		],
 		"rating": 3
 	},
@@ -102,10 +103,6 @@ var wineries = [
 		"descriptionShort": "Best wine to get you silly",
 		"website": "www.asdfasdf.com.au",
 		"openDays": {
-				"mon": "10:00-22:00",
-				"tues": "10:00-22:00",
-				"wed": "10:00-22:00",
-				"thurs": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
 				"sun": "10:00-22:00"	
@@ -119,19 +116,21 @@ var wineries = [
 		"tourAvailability": "Yes",
 		"tastingPrice": "Paid",
 		"madeAt": [
-			"Locally", "Different Location"
+			"diff": undefined
 		],
 		"wineSize": [
-			"Small", "Medium"
+			"large": undefined
 		],
 		"wineType": [
-			"Dessert", "Fortified", "Sparkling"
+			"organic": undefined
 		],
 		"wineVariety": [
-			"Blend", "Cabernet Sauvignon", "Chardonnay"
+			"rose": undefined
 		],
 		"price": [
-			"$10 - $20", "$21 - $30", "$31 - $40"
+			"$10 - $20": undefined, 
+			"$21 - $30": undefined, 
+			"$31 - $40": undefined
 		],
 		"rating": 3
 	}
