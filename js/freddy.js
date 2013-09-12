@@ -7,6 +7,22 @@ This should include website, address, open hours/days, wine types, star rating.
 When clicked on again, collapse 
 
 */
+	$.fn.stars = function() {	
+		return $(this).each(function() {
+			// Get the value
+			var val = parseFloat($(this).html());
+			// Make sure that the value is in 0 - 5 range, multiply to get width
+			val = Math.round(val * 2) / 2; /* To round to nearest half */
+			var size = Math.max(0, (Math.min(5, val))) * 16;
+			// Create stars holder
+			var $span = $('<span />').width(size);
+			// Replace the numerical value with stars
+			$(this).html($span);
+		});
+	}
+
+
+
 	function loadResults(mode) {
 		$('#results').html("");	
 		for (var i = 0; i < wineries.length; i++) {
@@ -35,10 +51,8 @@ When clicked on again, collapse
 			html += '<strong>Wine Varieties: </strong>' + wineries[i].wineVariety + '<br>';
 			html += '<strong>Wine Types: </strong>' + wineries[i].wineType + '<br>';
 			html += '<strong>Wine Sizes: </strong>' + wineries[i].wineSize + '<br>';
-			html += '<strong>Prices: </strong>' + wineries[i].price + '<br>';
-			
-			
-			
+			html += '<strong>Prices: </strong>' + wineries[i].price + '<br>';			
+			html += '<strong>Rating: </strong><span class="stars">'+wineries[i].rating+'</span><br>';			
 			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
 			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';
 			
@@ -58,15 +72,18 @@ When clicked on again, collapse
 		}
 		if (mode == 'searchResults') {
 			$('.addBtn').on('click', function(event) {
-				alert($(this).attr('id'));
+				var i = $(this).attr('id').split('-');
+				alert(i[0] + '-' + i[1]);
 			});
 		} else if (mode == 'itinerary') {
 			$('#results').sortable();
         	$('#results').disableSelection();
 			$('.removeBtn').on('click', function(event) {
-				var i = $(this).attr('id').split('-');
-				
+				var i = $(this).attr('id').split('-');				
 				$('#panel-'+i[1]).hide('slow', function(){ ('#panel-'+i[1]).remove(); });
 			});
 		}
+		$(function() {
+			$('span.stars').stars();
+		});
 	}
