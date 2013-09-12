@@ -32,7 +32,7 @@ var wineries = [
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley",
 				"lat": -32.656135,
-				"long": 151.351019			
+				"lon": 151.351319			
 		},
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
@@ -74,7 +74,7 @@ var wineries = [
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley",
 				"lat": -32.656122,
-				"long": 151.331019			
+				"lon": 151.331019			
 		},
 		"tourAvailability": "yes",
 		"tastingPrice": "free",
@@ -110,8 +110,8 @@ var wineries = [
 		"location": {			
 				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley",
-				"lat": -34.656135,
-				"long": 156.351019			
+				"lat": -32.756314,
+				"lon": 151.351119			
 		},
 		"tourAvailability": "no",
 		"tastingPrice": "paid",
@@ -139,7 +139,7 @@ var wineries = [
 //dummy region JSON data
 var region ={
 		'name' : 'Hunter Valley',
-		'latitude' : -32.700000,
+		'latitude' : -32.750020,
 		'longtitude' : 151.266700
 	};
 	
@@ -148,6 +148,6 @@ var itinerary= [
 		'resultId': 0
 	},
 	{
-		'resultId': 1
+		'resultId': 2
 	}
 ];
