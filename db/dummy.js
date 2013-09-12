@@ -47,24 +47,14 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
 			"blend": true,
 			"cabernet sauvignon": true,
-			"chardonnay": true,
-			"moscato": undefined,
-			"pinot noir": undefined,
-			"riesling": undefined,
-			"rose": undefined,
+			"chardonnay": true
 			"sauvignon blanc": true,
-			"semillon": undefined,
-			"shiraz": true,
-			"verdelho": undefined,
-			"merlot": undefined,
-			"other": undefined
+			"shiraz": true
 		},
 		"price": "$10 - $20",
 		"rating": 2
@@ -97,24 +87,14 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
 			"blend": true,
 			"cabernet sauvignon": true,
-			"chardonnay": true,
-			"moscato": undefined,
-			"pinot noir": undefined,
-			"riesling": undefined,
-			"rose": undefined,
+			"chardonnay": true
 			"sauvignon blanc": true,
-			"semillon": undefined,
-			"shiraz": true,
-			"verdelho": undefined,
-			"merlot": undefined,
-			"other": undefined
+			"shiraz": true
 		},
 		"price": "$10 - $20",
 		"rating": 5
@@ -147,24 +127,13 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
-			"blend": undefined,
-			"cabernet sauvignon": undefined,
-			"chardonnay": undefined,
-			"moscato": undefined,
-			"pinot noir": undefined,
-			"riesling": undefined,
-			"rose": undefined,
 			"sauvignon blanc": true,
 			"semillon": true,
 			"shiraz": true,
-			"verdelho": undefined,
-			"merlot": true,
-			"other": undefined
+			"merlot": true
 		},
 		"price": "$10 - $20",
 		"rating": 4
@@ -197,24 +166,16 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
 			"blend": true,
 			"cabernet sauvignon": true,
 			"chardonnay": true,
-			"moscato": undefined,
 			"pinot noir": true,
 			"riesling": true,
-			"rose": undefined,
 			"sauvignon blanc": true,
-			"semillon": undefined,
-			"shiraz": undefined,
-			"verdelho": undefined,
 			"merlot": true,
-			"other": undefined
 		},
 		"price": "$10 - $20",
 		"rating": 2.5
@@ -247,23 +208,13 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
-			"blend": undefined,
-			"cabernet sauvignon": undefined,
 			"chardonnay": true,
-			"moscato": undefined,
-			"pinot noir": undefined,
 			"riesling": true,
-			"rose": undefined,
 			"sauvignon blanc": true,
-			"semillon": undefined,
 			"shiraz": true,
-			"verdelho": undefined,
-			"merlot": undefined,
 			"other": true
 		},
 		"price": "$10 - $20",
@@ -297,24 +248,13 @@ var wineries = [
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
-			"red": true,
-			"white": undefined,
-			"organic": undefined
+			"red": true
 		},
 		"wineVariety": {
-			"blend": undefined,
-			"cabernet sauvignon": undefined,
-			"chardonnay": undefined,
-			"moscato": undefined,
 			"pinot noir": true,
-			"riesling": undefined,
-			"rose": undefined,
 			"sauvignon blanc": true,
-			"semillon": undefined,
 			"shiraz": true,
-			"verdelho": undefined,
-			"merlot": true,
-			"other": undefined
+			"merlot": true
 		},
 		"price": "$10 - $20",
 		"rating": 3.5
