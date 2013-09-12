@@ -76,14 +76,14 @@ function showFullItinerary(results, itinerary){
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
 	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(getElementByID('result'));
-	
-	var start = markersArray[itinerary[0].reusltId+1].getPosition();
+	directionsDisplay.setPanel(document.getElementById('itinerary'));
+	var start = markersArray[itinerary[0].resultId+1].getPosition();
 	var end = markersArray[itinerary[itinerary.length-1].resultId+1].getPosition();
+	console.log(end);
 	var waypoints = [];
 	for(var i=1;i<itinerary.length-1;i++){
 		var waypoint = {
-			location:markersArray[itinerary[i].reusltId+1].getPosition(),
+			location:markersArray[itinerary[i].resultId+1].getPosition(),
 			stopover:true
 		}
 		waypoints.push(waypoint);

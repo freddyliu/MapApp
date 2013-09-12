@@ -12,16 +12,8 @@
 		
 	</head>
 	<body>
-		<div id="map">
-		</div>
-		<script>
-			//dummy region JSON data
-			var region ={
-					'name' : 'Hunter Valley',
-					'latitude' : -32.700000,
-					'longtitude' : 151.266700
-				}
-		</script>
+		<div id="itinerary"></div>
+		<div id="map"></div>
 		<script src="js/jk.js"></script>
 		<script src="db/dummy.js"></script>
 		<script>
@@ -29,6 +21,7 @@
 			drawCenterMarker(region);
 			drawAllMarkers(wineries);
 			zoomToFit();
+			showFullItinerary(wineries, itinerary);
 		</script>
 	</body>
 </html>
