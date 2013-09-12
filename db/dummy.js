@@ -148,6 +148,6 @@ var itinerary= [
 		'resultId': 0
 	},
 	{
-		'resultId': 1
+		'resultId': 2
 	}
 ];

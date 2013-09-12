@@ -184,3 +184,30 @@ function itineraryErrorHandler(status){
 }
 
 
+/*
+ * adding the index of a winery in the result list to itinerary
+ */
+function addToItinerary(index){
+	if(!inItinerary(index)){
+		if(itinerary.length<10){
+			itinerary.push({'resultId': index});
+		}else{
+			alert('Max waypoints (8) exceeded.');
+		}
+	}else{
+		alert('This is place is already in your itinerary.');
+	}
+}
+
+/*
+ * return true if the index of a winery in the result list is already in the itinerary
+ */
+function inItinerary(index){
+	for(var i=0;i<itinerary.length;i++){
+		if(itinerary[i].resultId==index){
+			return true;
+		}
+	}
+	return false;
+}
+
