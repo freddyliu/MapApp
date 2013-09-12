@@ -7,8 +7,36 @@ This should include website, address, open hours/days, wine types, star rating.
 When clicked on again, collapse 
 
 */
+	var region = '';
+	var itinerary = [];
 	var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-
+	
+	function setCookie(name,value,exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+		document.cookie=name + "=" + value;
+	}
+	
+	function getCookie(name) {
+		var value = document.cookie;
+		var start = value.indexOf(" " + name + "=");
+		if (start == -1) {
+			start = value.indexOf(name + "=");
+		}
+		if (start == -1) {
+			value = null;
+		} else {
+			start = value.indexOf("=", start) + 1;
+			var end = value.indexOf(";", start);
+			if (end == -1) {
+				end = value.length;
+			}
+			value = unescape(value.substring(start,end));
+		}
+		return value;
+	}
+	
 	$.fn.stars = function() {	
 		return $(this).each(function() {
 			// Get the value
@@ -23,7 +51,7 @@ When clicked on again, collapse
 		});
 	}
 
-	function loadResults(mode) {
+	function loadResults(wineries, mode) {
 		$('#results').html("");	
 		for (var i = 0; i < wineries.length; i++) {
 			if (mode == 'searchResults') {
@@ -62,8 +90,8 @@ When clicked on again, collapse
 			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
 			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';
 			
-			html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
-			html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
+			//html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
+			//html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
 			
 			html += '<strong><i class="icon-time icon-small"></i> Opening Hours:</strong><br>';
 			html += '<strong>Mon:</strong> '+wineries[i].openDays.mon+'<br>';
@@ -79,7 +107,11 @@ When clicked on again, collapse
 		if (mode == 'searchResults') {
 			$('.addBtn').on('click', function(event) {
 				var i = $(this).attr('id').split('-');
-				alert(i[0] + '-' + i[1]);
+				i = i[1];
+				itinerary.push(wineries[i]);
+				console.log(wineries[i]);
+				console.log(itinerary);
+				//alert(i[0] + '-' + i[1]);
 			});
 		} else if (mode == 'itinerary') {
 			$('#results').sortable();

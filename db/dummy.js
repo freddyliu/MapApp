@@ -17,6 +17,7 @@ price IS $10-$20
 `tour availability: Yes/No
 `tasting price: Free/Paid
 */
+
 var wineries = [
 	{ 
 		"id": 0,
@@ -142,6 +143,7 @@ var region ={
 		'latitude' : -32.750020,
 		'longtitude' : 151.266700
 	};
+<<<<<<< HEAD
 	
 var itinerary= [
 	{
@@ -151,3 +153,5 @@ var itinerary= [
 		'resultId': 2
 	}
 ];
+=======
+>>>>>>> looks slightly better, renamed html to ticket number, choosing a region works by looking at a cookie, but this can be changed in the future
