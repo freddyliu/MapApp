@@ -30,22 +30,29 @@ When clicked on again, collapse
 			html += '<button id="showOnMap-'+i+'" type="button" class="showOnMap btn btn-small btn-primary pull-right">';
 			html += '<i class="icon-map-marker"></i> Show on Map</button>';			
 			//html += '<strong>' + wineries[i].name + '</strong><br>';
-			html += '<i class="icon-globe icon-small"></i> ' + wineries[i].website + '<br>';
+			html += '<a href="http://'+wineries[i].website+'" target="_blank"><i class="icon-globe icon-small"></i> ' + wineries[i].website + '</a><br>';
+			
+			html += '<strong>Wine Varieties: </strong>' + wineries[i].wineVariety + '<br>';
+			html += '<strong>Wine Types: </strong>' + wineries[i].wineType + '<br>';
+			html += '<strong>Wine Sizes: </strong>' + wineries[i].wineSize + '<br>';
+			html += '<strong>Prices: </strong>' + wineries[i].price + '<br>';
+			
+			
 			
 			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
-			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
+			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';
 			
 			html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
 			html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
 			
 			html += '<strong><i class="icon-time icon-small"></i> Opening Hours:</strong><br>';
-			html += '<strong>Mon:</strong> '+wineries[i].openDays[0].mon+'<br>';
-			html += '<strong>Tues:</strong> '+wineries[i].openDays[0].tues+'<br>';
-			html += '<strong>Wed:</strong> '+wineries[i].openDays[0].wed+'<br>';
-			html += '<strong>Thurs:</strong> '+wineries[i].openDays[0].thurs+'<br>';
-			html += '<strong>Fri:</strong> '+wineries[i].openDays[0].fri+'<br>';
-			html += '<strong>Sat:</strong> '+wineries[i].openDays[0].sat+'<br>';
-			html += '<strong>Sun:</strong> '+wineries[i].openDays[0].sun+'<br>';		
+			html += '<strong>Mon:</strong> '+wineries[i].openDays.mon+'<br>';
+			html += '<strong>Tues:</strong> '+wineries[i].openDays.tues+'<br>';
+			html += '<strong>Wed:</strong> '+wineries[i].openDays.wed+'<br>';
+			html += '<strong>Thurs:</strong> '+wineries[i].openDays.thurs+'<br>';
+			html += '<strong>Fri:</strong> '+wineries[i].openDays.fri+'<br>';
+			html += '<strong>Sat:</strong> '+wineries[i].openDays.sat+'<br>';
+			html += '<strong>Sun:</strong> '+wineries[i].openDays.sun+'<br>';		
 			html += '</div></div></li>';		
 			$('#results').append(html);
 		}
