@@ -1,13 +1,18 @@
+var region = region;
 var map;	//map object
 var markersArray=[];	////for storing markers for referencing purpose
+var results = wineries;
+var itinerary = itinerary;
+var mapContainer = document.getElementById('map')
+var itineraryContainer = document.getElementById('itinerary');
 
 /*
  * create a map base on user input location, and then
  * add it to a specific container in the html file.
  */
-function createMap(region, container){
+function createMap(){
 	pos = new google.maps.LatLng(region.latitude,region.longtitude);
-	map = new google.maps.Map(container, {
+	map = new google.maps.Map(mapContainer, {
 		mapTypeId: google.maps.MapTypeId.ROADMAP,	//the default map type
 		zoom: 17,	//the default zoom level
 		center: pos
@@ -17,7 +22,7 @@ function createMap(region, container){
 /*
  * draw a marker in the center of the search region
  */
-function drawCenterMarker(region){
+function drawCenterMarker(){
 	var imageURL='http://jspace.com.au/gmap/img/markers/arrow.png';
 	if(!markersArray[0] || makersArray[0].getIcon()!=imageURL){	
 		pos = new google.maps.LatLng(region.latitude,region.longtitude);
@@ -51,9 +56,20 @@ function drawMarker(result, index){
 /*
  * draw all markers on the map for a list of search results
  */ 
-function drawAllMarkers(results){
+function drawAllMarkers(){
 	for(var i=0;i<results.length;i++){
 		drawMarker(results[i],i);
+	}
+}
+
+/*
+ * remove all markers from the map
+ */ 
+function clearMarkers() {
+	if (markersArray) {
+		for(var i=1;i<markersArray.length;i++){
+			markersArray[i].setMap(null);
+		}
 	}
 }
 
@@ -71,15 +87,16 @@ function zoomToFit(){
 
 /*
  * show a full itinerary which go through all the markers
+ * input: results - result list, itinerary - itinerary list, container - the html container for displaying full itinerary infomation
  */
-function showFullItinerary(results, itinerary){
+function showFullItinerary(){
 	var directionsDisplay = new google.maps.DirectionsRenderer();
 	var directionsService = new google.maps.DirectionsService();
 	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(document.getElementById('itinerary'));
+	directionsDisplay.setPanel(itineraryContainer);
+	
 	var start = markersArray[itinerary[0].resultId+1].getPosition();
 	var end = markersArray[itinerary[itinerary.length-1].resultId+1].getPosition();
-	console.log(end);
 	var waypoints = [];
 	for(var i=1;i<itinerary.length-1;i++){
 		var waypoint = {
@@ -98,8 +115,36 @@ function showFullItinerary(results, itinerary){
 	directionsService.route(request, function(response, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionsDisplay.setDirections(response);
+		}else{
+			itineraryErrorHandler(status);
 		}
 	});
+}
+
+function itineraryErrorHandler(status){
+	switch(status){
+		case google.maps.DirectionsStatus.NOT_FOUND:
+			alert("At least one of the locations could not be found.");
+		break;
+		case google.maps.DirectionsStatus.ZERO_RESULTS:
+			alert("No route could be found.");
+		break;
+		case google.maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED:
+			alert("Max waypoints (8) exceeded.");
+		break;
+		case google.maps.DirectionsStatus.INVALID_REQUEST:
+			alert("Invalid request.");
+		break;
+		case google.maps.DirectionsStatus.OVER_QUERY_LIMIT:
+			alert("Over query limit. Please wait for a while and try again.");
+		break;
+		case google.maps.DirectionsStatus.REQUEST_DENIED:
+			alert("Your itinerary request has been denied.");
+		break;
+		case google.maps.DirectionsStatus.UNKNOWN_ERROR:
+			alert("Unknown error.");
+		break;
+	}
 }
 
 

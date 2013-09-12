@@ -14,14 +14,15 @@
 	<body>
 		<div id="itinerary"></div>
 		<div id="map"></div>
-		<script src="js/jk.js"></script>
 		<script src="db/dummy.js"></script>
+		<script src="js/jk.js"></script>
 		<script>
-			createMap(region,document.getElementById('map'));
-			drawCenterMarker(region);
-			drawAllMarkers(wineries);
+			createMap();
+			drawCenterMarker();
+			drawAllMarkers();
 			zoomToFit();
-			showFullItinerary(wineries, itinerary);
+			clearMarkers();
+			showFullItinerary();
 		</script>
 	</body>
 </html>
