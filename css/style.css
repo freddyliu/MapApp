@@ -7,6 +7,10 @@
 	-khtml-user-drag: element;
 	-webkit-user-drag: element;
 }
+.resultsContainer {
+	clear: both;
+	padding-top: 20px;
+}
 .searchResults {
 	list-style: none;
 	padding-left: 0;

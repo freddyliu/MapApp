@@ -1,11 +1,11 @@
-var region = region;
+var region = region;	//the search region object
 var map;	//map object
 var markersArray=[];	//for storing markers for referencing purpose
-var infoArray=[];
-var results = wineries;
-var itinerary = itinerary;
-var mapContainer = document.getElementById('map')
-var itineraryContainer = document.getElementById('itinerary');
+var infoArray=[];	//for storing infowindows for referencing purpose
+var results = wineries;		//search result array
+var itinerary = itinerary;	//itinerary array
+var mapContainer = document.getElementById('map')	//html container element for displaying map
+var itineraryContainer = document.getElementById('itinerary');	//html container element for itinerary information
 
 /*
  * create a map base on user input location, and then
@@ -21,7 +21,8 @@ function createMap(){
 }
 
 /*
- * draw a marker in the center of the search region
+ * draw a marker in the center of the search region, and then
+ * add it to the begining of the markersArray
  */
 function drawCenterMarker(){
 	var imageURL='http://jspace.com.au/gmap/img/markers/arrow.png';
@@ -64,10 +65,15 @@ function drawAllMarkers(){
 	}
 }
 
+/*
+ * add information window for a marker
+ */ 
 function setMarkerInfo(marker,index){
 		var info = new google.maps.InfoWindow();
+		//content which goes into each infowindow
 		var content = results[index].name;
 			content += '<br />Address: ' + results[index].location.address;
+		
 			info.setContent(content);
 		infoArray.push(info);
 		google.maps.event.addListener(marker, 'click', function(){ 
@@ -89,12 +95,30 @@ function clearMarkers() {
 	}
 }
 
+/*
+ * destroy all markers in the markersArray EXCEPT the first one (center marker)
+ */ 
+function destroyMarkers() {
+	clearMarkers();
+	markersArray.length = 1;
+}
+/*
+ * remove all infowindows from the map
+ */ 
 function clearInfo(){
 	if (infoArray) {
 		for(var i=0;i<infoArray.length;i++){
 			infoArray[i].close();
 		}
 	}
+}
+
+/*
+ * destroy all infowindows in the infoArray
+ */ 
+function destroyInfo(){
+	clearInfo();
+	infoArray = [];
 }
 
 /*
@@ -134,7 +158,7 @@ function getFullItinerary(){
 		origin:start,
 		destination:end,
 		waypoints :waypoints,
-		travelMode: google.maps.DirectionsTravelMode.DRIVING
+		travelMode: google.maps.DirectionsTravelMode.DRIVING	//default travel method: driving
 	};
 	
 	directionsService.route(request, function(response, status) {
