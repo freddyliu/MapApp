@@ -59,6 +59,7 @@ function drawAllMarkers(results){
 
 /*
  * Re-zoom the map to a suitable size which can show all markers
+ * Note: default travel mode: driving
  */
 function zoomToFit(){
 	bounds = new google.maps.LatLngBounds ();
@@ -66,6 +67,39 @@ function zoomToFit(){
 		bounds.extend (markersArray[i].getPosition());
 	}
 	map.fitBounds (bounds);
+}
+
+/*
+ * show a full itinerary which go through all the markers
+ */
+function showFullItinerary(results, itinerary){
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+	var directionsService = new google.maps.DirectionsService();
+	directionsDisplay.setMap(map);
+	directionsDisplay.setPanel(getElementByID('result'));
+	
+	var start = markersArray[itinerary[0].reusltId+1].getPosition();
+	var end = markersArray[itinerary[itinerary.length-1].resultId+1].getPosition();
+	var waypoints = [];
+	for(var i=1;i<itinerary.length-1;i++){
+		var waypoint = {
+			location:markersArray[itinerary[i].reusltId+1].getPosition(),
+			stopover:true
+		}
+		waypoints.push(waypoint);
+	}
+	var request = {
+		origin:start,
+		destination:end,
+		waypoints :waypoints,
+		travelMode: google.maps.DirectionsTravelMode.DRIVING
+	};
+	
+	directionsService.route(request, function(response, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(response);
+		}
+	});
 }
 
 

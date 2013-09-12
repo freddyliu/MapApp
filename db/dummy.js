@@ -136,3 +136,12 @@ var wineries = [
 		"rating": 3
 	}
 ];
+
+//dummy region JSON data
+var region ={
+		'name' : 'Hunter Valley',
+		'latitude' : -32.700000,
+		'longtitude' : 151.266700
+	};
+	
+var I
