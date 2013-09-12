@@ -52,12 +52,13 @@ When clicked on again, collapse
 	}
 
 	function loadResults(wineries, mode) {
-		$('#results').html("");	
+		$('#results').html("");
 		for (var i = 0; i < wineries.length; i++) {
 			if (mode == 'searchResults') {
 				var index = (i+1) + '. ';
 			} else if (mode == 'itinerary') {
-				var index = alphabet[i] + '. ';
+				//var index = alphabet[i] + '. ';
+				var index = '';
 			}
 			
 			var html = '<li class="panel panel-default" draggable="true" id="panel-'+i+'">';
@@ -82,22 +83,30 @@ When clicked on again, collapse
 			//html += '<strong>' + wineries[i].name + '</strong><br>';
 			html += '<a href="http://'+wineries[i].website+'" target="_blank"><i class="icon-globe icon-small"></i> ' + wineries[i].website + '</a><br>';
 			
-			html += '<strong>Wine Varieties: </strong>' + wineries[i].wineVariety + '<br>';
-			html += '<strong>Wine Types: </strong>' + wineries[i].wineType + '<br>';
-			html += '<strong>Wine Sizes: </strong>' + wineries[i].wineSize + '<br>';
+			html += '<strong>Wine Varieties: </strong>';
+			//html += wineries[i].wineVariety['blend'];
+			for (var x in wineries[i].wineVariety) {
+				if (wineries[i].wineVariety[x]) { html += x + ' '; } //wineVariety is eg "blend" : true, "chardonnay": undefined
+			}
+			html += '<br>';
+			html += '<strong>Wine Types: </strong>';
+			for (var x in wineries[i].wineType) {
+				if (wineries[i].wineType[x]) { html += x + ' '; } //wineType is eg "dessert" : true, "white" : undefined
+			}
+			html += '<br>';
+			html += '<strong>Winery Size: </strong>'+wineries[i].winerySize;			
+			html += '<br>';
 			html += '<strong>Prices: </strong>' + wineries[i].price + '<br>';			
 			html += '<strong>Rating: </strong><span class="stars">'+wineries[i].rating+'</span><br>';			
 			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
-			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';
-			
-			//html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
-			//html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
-			
+			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';			
+			html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
+			html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';			
 			html += '<strong><i class="icon-time icon-small"></i> Opening Hours:</strong><br>';
 			html += '<strong>Mon:</strong> '+wineries[i].openDays.mon+'<br>';
-			html += '<strong>Tues:</strong> '+wineries[i].openDays.tues+'<br>';
+			html += '<strong>Tues:</strong> '+wineries[i].openDays.tue+'<br>';
 			html += '<strong>Wed:</strong> '+wineries[i].openDays.wed+'<br>';
-			html += '<strong>Thurs:</strong> '+wineries[i].openDays.thurs+'<br>';
+			html += '<strong>Thurs:</strong> '+wineries[i].openDays.thu+'<br>';
 			html += '<strong>Fri:</strong> '+wineries[i].openDays.fri+'<br>';
 			html += '<strong>Sat:</strong> '+wineries[i].openDays.sat+'<br>';
 			html += '<strong>Sun:</strong> '+wineries[i].openDays.sun+'<br>';		
@@ -117,8 +126,12 @@ When clicked on again, collapse
 			$('#results').sortable();
         	//$('#results').disableSelection();
 			$('.removeBtn').on('click', function(event) {
-				var i = $(this).attr('id').split('-');				
-				$('#panel-'+i[1]).hide('slow', function(){ ('#panel-'+i[1]).remove(); });
+				var i = $(this).attr('id').split('-');
+				i = i[1];
+				$('#panel-'+i).hide('slow', function(event) {
+					('#panel-'+i).remove();
+				});
+				$('#results').html('Empty! <a href="freddy-229.html">Search again?</a>');
 			});
 		}
 		$(function() {

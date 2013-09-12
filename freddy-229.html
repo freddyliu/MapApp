@@ -58,9 +58,10 @@
         <div class="input-group">
             <input class="form-control" type="text" id="keyword" name="keyword" placeholder="Search..." required>
             <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" id="sumbit" name="submit">Go!</button>
-            </span>
+                <button class="btn btn-info" type="submit" id="sumbit" name="submit">Go!</button>
+            </span>            
         </div>
+        <span class="help-block" id="searchHelpBlock"></span>
 	</form>
     
     <div id="regionDialog" style="display:none; text-align:center">
@@ -72,23 +73,35 @@
         </select>
     </div>
     <script>
-	if (getCookie('region') == null) {
-		$(function() {
-			$('#regionDialog').dialog({
-				autoOpen: true,
-				title: 'Please choose your region',
-				modal: true,
-				buttons: {
-					"OK": function() {
-						region = $('#region').val();
-						$(this).dialog('close');
-						setCookie('region',region,1);
-						console.log(getCookie('region'));
-					}
+	function openDialog() {
+		$('#regionDialog').dialog({
+			autoOpen: true,
+			title: 'Please choose your region',
+			modal: true,
+			buttons: {
+				"OK": function() {
+					region = $('#region').val();
+					$(this).dialog('close');
+					setCookie('region',region,1);
+					$('#searchHelpBlock').html(
+						'Your current region: <strong><a href="#" id="changeRegion">' + getCookie('region') + '</a></strong>'
+					)
 				}
-			});
+			}
 		});
 	}
+		
+	if (getCookie('region') == null) {
+		openDialog();
+	} else {
+		$('#searchHelpBlock').html(
+			'Your current region: <strong><a href="#" id="changeRegion">' + getCookie('region') + '</a></strong>'
+		)
+	}
+	
+	$('#changeRegion').on('click', function(event) {
+		openDialog();	
+	});
 	</script>
     
 </div>

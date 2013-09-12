@@ -26,129 +26,304 @@ var wineries = [
 		"website": "www.hunterwine.com.au",
 		"openDays": {
 				"mon": "10:00-22:00",
-				"tues": "10:00-22:00",
-				"wed": "10:00-22:00"
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
+				"fri": "10:00-22:00",
+				"sat": "10:00-22:00",
+				"sun": "10:00-22:00"
 		},
 		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
 				"region": "Hunter Valley",
 				"lat": -32.656135,
-				"lon": 151.351319			
+				"long": 151.351019			
 		},
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
-		"madeAt": {
-			"local": undefined
-		},
-		"wineSize": {
-			"small": undefined
-		},
+		"madeAt": "local",
+		"winerySize": "micro",
 		"wineType": {
-			"dessert": undefined, 
-			"fortified": undefined,
-			"sparkling": undefined
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
+			"organic": undefined
 		},
 		"wineVariety": {
-			"blend": undefined, 
-			"cabernet-sauvignon": undefined, 
-			"chardonnay": undefined
+			"blend": true,
+			"cabernet sauvignon": true,
+			"chardonnay": true,
+			"moscato": undefined,
+			"pinot noir": undefined,
+			"riesling": undefined,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": undefined,
+			"other": undefined
 		},
-		"price": {
-			"$10 - $20": undefined, 
-			"$21 - $30": undefined, 
-			"$31 - $40": undefined
-		},
-		"rating": 3
+		"price": "$10 - $20",
+		"rating": 2
 	},
 	{ 
 		"id": 1,
 		"name": "Fred's Wine",
-		"descriptionShort": "Best wine to get you drunk",
-		"website": "www.blah.com.au",
+		"descriptionShort": "Best wine to get you very drunk",
+		"website": "www.hunterwine.com.au",
 		"openDays": {
-				"thurs": "10:00-22:00",
+				"mon": "10:00-22:00",
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
-				"sun": "10:00-22:00"	
+				"sun": "10:00-22:00"
 		},
 		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
 				"region": "Hunter Valley",
-				"lat": -32.656122,
-				"lon": 151.331019			
+				"lat": -32.656135,
+				"long": 151.351019			
 		},
 		"tourAvailability": "yes",
-		"tastingPrice": "free",
-		"madeAt": {
-			"local": undefined
-		},
-		"wineSize": {
-			"medium": undefined
-		},
-		"wineType": {
-			"red": undefined, 
-			"white": undefined
+		"tastingPrice": "paid",
+		"madeAt": "local",
+		"winerySize": "small",
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
+			"organic": undefined
 		},
 		"wineVariety": {
-			"semillon": undefined, 
-			"shiraz": undefined
+			"blend": true,
+			"cabernet sauvignon": true,
+			"chardonnay": true,
+			"moscato": undefined,
+			"pinot noir": undefined,
+			"riesling": undefined,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": undefined,
+			"other": undefined
 		},
-		"price": {
-			"$31 - $40": undefined
-		},
-		"rating": 3
+		"price": "$10 - $20",
+		"rating": 5
 	},
 	{ 
 		"id": 2,
 		"name": "Jack's Wine",
-		"descriptionShort": "Best wine to get you silly",
-		"website": "www.asdfasdf.com.au",
+		"descriptionShort": "Best wine to get you very silly",
+		"website": "www.hunterwine.com.au",
 		"openDays": {
+				"mon": "10:00-22:00",
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
-				"sun": "10:00-22:00"	
+				"sun": "10:00-22:00"
 		},
 		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
 				"region": "Hunter Valley",
-				"lat": -32.756314,
-				"lon": 151.351119			
+				"lat": -32.656135,
+				"long": 151.351019			
 		},
-		"tourAvailability": "no",
+		"tourAvailability": "yes",
 		"tastingPrice": "paid",
-		"madeAt": {
-			"diff": undefined
-		},
-		"wineSize": {
-			"large": undefined
-		},
-		"wineType": {
+		"madeAt": "local",
+		"winerySize": "medium",
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
 			"organic": undefined
 		},
 		"wineVariety": {
-			"rose": undefined
+			"blend": undefined,
+			"cabernet sauvignon": undefined,
+			"chardonnay": undefined,
+			"moscato": undefined,
+			"pinot noir": undefined,
+			"riesling": undefined,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": true,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": true,
+			"other": undefined
 		},
-		"price": {
-			"$10 - $20": undefined, 
-			"$21 - $30": undefined, 
-			"$31 - $40": undefined
+		"price": "$10 - $20",
+		"rating": 4
+	},
+	{ 
+		"id": 3,
+		"name": "Henry's Wine",
+		"descriptionShort": "Best wine to get you hungry",
+		"website": "www.hunterwine.com.au",
+		"openDays": {
+				"mon": "10:00-22:00",
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
+				"fri": "10:00-22:00",
+				"sat": "10:00-22:00",
+				"sun": "10:00-22:00"
 		},
-		"rating": 3
+		"location": {			
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
+				"region": "Hunter Valley",
+				"lat": -32.656135,
+				"long": 151.351019			
+		},
+		"tourAvailability": "yes",
+		"tastingPrice": "paid",
+		"madeAt": "local",
+		"winerySize": "large",
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
+			"organic": undefined
+		},
+		"wineVariety": {
+			"blend": true,
+			"cabernet sauvignon": true,
+			"chardonnay": true,
+			"moscato": undefined,
+			"pinot noir": true,
+			"riesling": true,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": undefined,
+			"verdelho": undefined,
+			"merlot": true,
+			"other": undefined
+		},
+		"price": "$10 - $20",
+		"rating": 2.5
+	},
+	{ 
+		"id": 4,
+		"name": "Daisy's Wine",
+		"descriptionShort": "Best wine to get you angry about coding",
+		"website": "www.hunterwine.com.au",
+		"openDays": {
+				"mon": "10:00-22:00",
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
+				"fri": "10:00-22:00",
+				"sat": "10:00-22:00",
+				"sun": "10:00-22:00"
+		},
+		"location": {			
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
+				"region": "Hunter Valley",
+				"lat": -32.656135,
+				"long": 151.351019			
+		},
+		"tourAvailability": "yes",
+		"tastingPrice": "paid",
+		"madeAt": "local",
+		"winerySize": "small",
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
+			"organic": undefined
+		},
+		"wineVariety": {
+			"blend": undefined,
+			"cabernet sauvignon": undefined,
+			"chardonnay": true,
+			"moscato": undefined,
+			"pinot noir": undefined,
+			"riesling": true,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": undefined,
+			"other": true
+		},
+		"price": "$10 - $20",
+		"rating": 4
+	},
+	{ 
+		"id": 5,
+		"name": "Karine's Wine",
+		"descriptionShort": "Best wine to get you dancing",
+		"website": "www.hunterwine.com.au",
+		"openDays": {
+				"mon": "10:00-22:00",
+				"tue": "10:00-22:00",
+				"wed": "10:00-22:00",
+				"thu": "10:00-22:00",
+				"fri": "10:00-22:00",
+				"sat": "10:00-22:00",
+				"sun": "10:00-22:00"
+		},
+		"location": {			
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
+				"region": "Hunter Valley",
+				"lat": -32.656135,
+				"long": 151.351019			
+		},
+		"tourAvailability": "yes",
+		"tastingPrice": "paid",
+		"madeAt": "local",
+		"winerySize": "large",
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
+			"organic": undefined
+		},
+		"wineVariety": {
+			"blend": undefined,
+			"cabernet sauvignon": undefined,
+			"chardonnay": undefined,
+			"moscato": undefined,
+			"pinot noir": true,
+			"riesling": undefined,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": true,
+			"other": undefined
+		},
+		"price": "$10 - $20",
+		"rating": 3.5
 	}
 ];
 
 //dummy region JSON data
 var region ={
 		'name' : 'Hunter Valley',
-		'latitude' : -32.750020,
+		'latitude' : -32.700000,
 		'longtitude' : 151.266700
 	};
-	
-var itinerary= [
-	{
-		'resultId': 0
-	},
-	{
-		'resultId': 2
-	}
-];
