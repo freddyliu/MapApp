@@ -27,121 +27,61 @@ var wineries = [
 		"openDays": {
 				"mon": "10:00-22:00",
 				"tues": "10:00-22:00",
-				"wed": "10:00-22:00"
-		},
-		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
-				"region": "Hunter Valley",
-				"lat": -32.656135,
-				"lon": 151.351319			
-		},
-		"tourAvailability": "yes",
-		"tastingPrice": "paid",
-		"madeAt": {
-			"local": undefined
-		},
-		"wineSize": {
-			"small": undefined
-		},
-		"wineType": {
-			"dessert": undefined, 
-			"fortified": undefined,
-			"sparkling": undefined
-		},
-		"wineVariety": {
-			"blend": undefined, 
-			"cabernet-sauvignon": undefined, 
-			"chardonnay": undefined
-		},
-		"price": {
-			"$10 - $20": undefined, 
-			"$21 - $30": undefined, 
-			"$31 - $40": undefined
-		},
-		"rating": 3
-	},
-	{ 
-		"id": 1,
-		"name": "Fred's Wine",
-		"descriptionShort": "Best wine to get you drunk",
-		"website": "www.blah.com.au",
-		"openDays": {
+				"wed": "10:00-22:00",
 				"thurs": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
-				"sun": "10:00-22:00"	
+				"sun": "10:00-22:00"
 		},
 		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333",
 				"region": "Hunter Valley",
-				"lat": -32.656122,
-				"lon": 151.331019			
+				"lat": -32.656135,
+				"long": 151.351019			
 		},
 		"tourAvailability": "yes",
-		"tastingPrice": "free",
-		"madeAt": {
-			"local": undefined
-		},
-		"wineSize": {
-			"medium": undefined
-		},
-		"wineType": {
-			"red": undefined, 
-			"white": undefined
-		},
-		"wineVariety": {
-			"semillon": undefined, 
-			"shiraz": undefined
-		},
-		"price": {
-			"$31 - $40": undefined
-		},
-		"rating": 3
-	},
-	{ 
-		"id": 2,
-		"name": "Jack's Wine",
-		"descriptionShort": "Best wine to get you silly",
-		"website": "www.asdfasdf.com.au",
-		"openDays": {
-				"fri": "10:00-22:00",
-				"sat": "10:00-22:00",
-				"sun": "10:00-22:00"	
-		},
-		"location": {			
-				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
-				"region": "Hunter Valley",
-				"lat": -32.756314,
-				"lon": 151.351119			
-		},
-		"tourAvailability": "no",
 		"tastingPrice": "paid",
-		"madeAt": {
-			"diff": undefined
-		},
+		"madeAt": "local",
 		"wineSize": {
-			"large": undefined
+			"micro": undefined,
+			"small": true,
+			"medium": true,
+			"large": undefined	
 		},
-		"wineType": {
+		"wineType": {			
+			"dessert": true,
+			"fortified": true,
+			"sparkling": true,
+			"red": true,
+			"white": undefined,
 			"organic": undefined
 		},
 		"wineVariety": {
-			"rose": undefined
+			"blend": true,
+			"cabernet sauvignon": true,
+			"chardonnay": true,
+			"moscato": undefined,
+			"pinot noir": undefined,
+			"riesling": undefined,
+			"rose": undefined,
+			"sauvignon blanc": true,
+			"semillon": undefined,
+			"shiraz": true,
+			"verdelho": undefined,
+			"merlot": undefined,
+			"other": undefined
 		},
-		"price": {
-			"$10 - $20": undefined, 
-			"$21 - $30": undefined, 
-			"$31 - $40": undefined
-		},
+		"price": "$10 - $20",
 		"rating": 3
-	}
+	},
 ];
 
 //dummy region JSON data
 var region ={
 		'name' : 'Hunter Valley',
-		'latitude' : -32.750020,
+		'latitude' : -32.700000,
 		'longtitude' : 151.266700
+<<<<<<< HEAD
 	};
 	
 var itinerary= [
@@ -152,3 +92,6 @@ var itinerary= [
 		'resultId': 2
 	}
 ];
+=======
+	};
+>>>>>>> changed data again, output is now able to output henry's preferred format

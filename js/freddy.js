@@ -82,16 +82,30 @@ When clicked on again, collapse
 			//html += '<strong>' + wineries[i].name + '</strong><br>';
 			html += '<a href="http://'+wineries[i].website+'" target="_blank"><i class="icon-globe icon-small"></i> ' + wineries[i].website + '</a><br>';
 			
-			html += '<strong>Wine Varieties: </strong>' + wineries[i].wineVariety + '<br>';
-			html += '<strong>Wine Types: </strong>' + wineries[i].wineType + '<br>';
-			html += '<strong>Wine Sizes: </strong>' + wineries[i].wineSize + '<br>';
+			html += '<strong>Wine Varieties: </strong>';
+			//html += wineries[i].wineVariety['blend'];
+			for (var x in wineries[i].wineVariety) {
+				if (wineries[i].wineVariety[x]) { html += x + ' '; } //wineVariety is eg "blend" : true, "chardonnay": undefined
+			}
+			html += '<br>';
+			html += '<strong>Wine Types: </strong>';
+			for (var x in wineries[i].wineType) {
+				if (wineries[i].wineType[x]) { html += x + ' '; } //wineType is eg "dessert" : true, "white" : undefined
+			}
+			html += '<br>';
+			html += '<strong>Wine Sizes: </strong>';
+			for (var x in wineries[i].wineSize) {
+				if (wineries[i].wineSize[x]) { html += x + ' '; } //wineSize is eg "micro" : true, "medium" : undefined
+			}
+			
+			html += '<br>';
 			html += '<strong>Prices: </strong>' + wineries[i].price + '<br>';			
 			html += '<strong>Rating: </strong><span class="stars">'+wineries[i].rating+'</span><br>';			
 			html += '<strong>Tour Available:</strong> '+wineries[i].tourAvailability+'<br>';
 			html += '<strong>Tasting Price:</strong> '+wineries[i].tastingPrice+'<br>';
 			
-			//html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
-			//html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
+			html += '<strong>Address:</strong> ' + wineries[i].location.address + '<br>';
+			html += '<strong>Region:</strong> ' + wineries[i].location.region + '<br>';		
 			
 			html += '<strong><i class="icon-time icon-small"></i> Opening Hours:</strong><br>';
 			html += '<strong>Mon:</strong> '+wineries[i].openDays.mon+'<br>';
