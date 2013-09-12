@@ -36,12 +36,14 @@
 			<section id="main-container">
 				<h1>Plan your trip</h1>
 				<section id="search">
-					<form id="main-search-form" action="">
+					<form id="main-search-form">
 						<div class="form-container">
 							<label>What are you looking for</label>
 							<input id="keywords" type="text" placeholder="" class="large-input" />
 							<button type="button" class="large-button" id="more-details">more details</button>
 							<div id="search-details">
+								<label>Open day</label>
+								<input type="text" class="large-input" id="day-select" />
 								<label>Price per bottle</label>
 								<input type="text" class="large-input" id="price-select" />
 								<label>Wine variety</label>
@@ -74,20 +76,20 @@
 								<label>Made at</label>
 								<ul class="made-select">
 									<li>Any <input type="radio" name="made-radio" class="type-radio" id="any-check" value="any-made" /></li>
-									<li>Locally <input type="radio" name="made-radio" class="type-radio" id="local-check" value="local" /></li>
-									<li>Different location <input type="radio" name="made-radio" class="type-radio" id="diff-check" value="diff" /></li>
+									<li>Locally <input type="radio" name="made-radio" class="type-radio" id="local-check" value="local-made" /></li>
+									<li>Different location <input type="radio" name="made-radio" class="type-radio" id="diff-check" value="diff-made" /></li>
 								</ul>
 								<label>Tour availability</label>
 								<ul class="tour-select">
 									<li>Any <input type="radio" name="tour-radio" class="type-radio" id="any-check" value="any-tour" /></li>
-									<li>Yes <input type="radio" name="tour-radio" class="type-radio" id="yes-check" value="yes" /></li>
-									<li>No <input type="radio" name="tour-radio" class="type-radio" id="no-check" value="no" /></li>
+									<li>Yes <input type="radio" name="tour-radio" class="type-radio" id="yes-check" value="yes-tour" /></li>
+									<li>No <input type="radio" name="tour-radio" class="type-radio" id="no-check" value="no-tour" /></li>
 								</ul>
 								<label>Tasting price</label>
 								<ul class="tasting-select">
 									<li>Any <input type="radio" name="tasting-radio" class="type-radio" id="any-check" value="any-tasting" /></li>
-									<li>Free <input type="radio" name="tasting-radio" class="type-radio" id="free-check" value="free" /></li>
-									<li>Paid <input type="radio" name="tasting-radio" class="type-radio" id="paid-check" value="paid" /></li>
+									<li>Free <input type="radio" name="tasting-radio" class="type-radio" id="free-check" value="free-tasting" /></li>
+									<li>Paid <input type="radio" name="tasting-radio" class="type-radio" id="paid-check" value="paid-tasting" /></li>
 								</ul>
 								<label>Search criteria</label>
 								<ul class="criteria-select">
@@ -143,7 +145,7 @@
 					}
 				});
 				
-				$("main-search-form").on('submit', function(event) {
+				$("#main-search-form").on('submit', function(event) {
 					event.preventDefault();
 					search();
 				});
@@ -153,41 +155,93 @@
 				if(textSearch) {
 					
 				} else {
-					var t = getPreferred
+					var days = getDay(); //days array
+					var prefferedPrice = getPrefferedPrice(); //price array
+					var varieties = getVarieties(); //varieties array
+					var type = getType(); //type array
+					var size = getSize(); //size array
+					var made = getMade();
+					var tour = getTour();
+					var tastingPrice = getTastingPrice();
+					var searchCriteria = getSearchCriteria();
+					
+					if(searchCriteria == "all-check") {
+						//Filter using all search criterias
+						
+					} else {
+						//Filter using any criteria
+					}
 				}
 			}
 			
-			function getPrefferedPrice() {
-				var prefferedPrice = document.getElementById("price-select").value;
+			function allSearch(days, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
 				
 			}
 			
-			function getVarieties() {
+			function anySearch(days, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
 			
+			}
+			
+			function getDay() {
+				return document.getElementById("day-select").value.split("-");
+			}
+			
+			function getPrefferedPrice() {
+				return document.getElementById("price-select").value.split("-");
+			}
+			
+			function getVarieties() {
+				var varieties = new Array();
+				
+				if(document.getElementById("blend-check").checked) { varieties.push("blend") };
+				if(document.getElementById("cabernet-check").checked) { varieties.push("cabernet") };
+				if(document.getElementById("chardonnay-check").checked) { varieties.push("chardonnay") };
+				if(document.getElementById("merlot-check").checked) { varieties.push("merlot") };
+				if(document.getElementById("moscato-check").checked) { varieties.push("moscato") };
+				if(document.getElementById("pinot-check").checked) { varieties.push("pinot") };
+				if(document.getElementById("riesling-check").checked) { varieties.push("riesling") };
+				if(document.getElementById("rose-check").checked) { varieties.push("rose") };
+				if(document.getElementById("sauvignon-check").checked) { varieties.push("sauvignon") };
+				if(document.getElementById("semillon-check").checked) { varieties.push("semillon") };
+				if(document.getElementById("shiraz-check").checked) { varieties.push("shiraz") };
+				if(document.getElementById("verdelho-check").checked) { varieties.push("verdelho") };
+				if(document.getElementById("other-check").checked) { varieties.push("other") };
+				
+				return varieties;
 			}
 			
 			function getType() {
-			
+				var type = new Array();
+				
+				if(document.getElementById("dessert-check").checked) { type.push("dessert") };
+				if(document.getElementById("fortified-check").checked) { type.push("fortified") };
+				if(document.getElementById("organic-check").checked) { type.push("organic") };
+				if(document.getElementById("red-check").checked) { type.push("red") };
+				if(document.getElementById("sparkling-check").checked) { type.push("sparkling") };
+				if(document.getElementById("white-check").checked) { type.push("white") };
+				
+				return type;
 			}
 			
 			function getSize() {
-			
+				return document.getElementById("size-select").value.split("-");
 			}
 			
 			function getMade() {
-			
+				return $('input[name="made-radio"]:checked').val();
 			}
 			
 			function getTour() {
-			
+				return $('input[name="tour-radio"]:checked').val();
 			}
 			
 			function getTastingPrice() {
-			
+				return $('input[name="tasting-radio"]:checked').val();
 			}
 			
 			function getSearchCriteria() {
-			
+				console.log($('input[name="criteria-radio"]:checked').val());
+				return $('input[name="criteria-radio"]:checked').val();
 			}
 			
 		</script>
