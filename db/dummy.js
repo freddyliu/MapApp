@@ -146,11 +146,9 @@ var region ={
 	
 var itinerary= [
 	{
-		'id': 0,
 		'resultId': 0
 	},
 	{
-		'id': 1,
 		'resultId': 1
 	}
 ];
