@@ -20,6 +20,63 @@
 
 			<div id="results"></div>
 		</form>
+		
+		<div id="search-details">
+								<label>Open day</label>
+								<input type="text" class="large-input" id="day-select" />
+								<label>Price per bottle</label>
+								<input type="text" class="large-input" id="price-select" />
+								<label>Wine variety</label>
+								<ul class="variety-select">
+									<li>Blend <input type="checkbox" class="type-checkbox" id="blend-check" value="blend" /> </li>
+									<li>Cabernet Sauvignon <input type="checkbox" class="type-checkbox" id="cabernet-check" value="cabernet-sauvignon" /></li>
+									<li>Chardonnay <input type="checkbox" class="type-checkbox" id="chardonnay-check" value="chardonnay" /></li>
+									<li>Merlot <input type="checkbox" class="type-checkbox" id="merlot-check" value="merlot" /></li>
+									<li>Moscato <input type="checkbox" class="type-checkbox" id="moscato-check" value="moscato" /></li>
+									<li>Pinot Noir <input type="checkbox" class="type-checkbox" id="pinot-check" value="pinot-noir" /></li>
+									<li>Riesling <input type="checkbox" class="type-checkbox" id="riesling-check" value="riesling" /></li>
+									<li>Rose <input type="checkbox" class="type-checkbox" id="rose-check" value="rose" /></li>
+									<li>Sauvignon Blanc <input type="checkbox" class="type-checkbox" id="sauvignon-check" value="sauvignon-blanc" /></li>
+									<li>Semillon <input type="checkbox" class="type-checkbox" id="semillon-check" value="semillon" /></li>
+									<li>Shiraz <input type="checkbox" class="type-checkbox" id="shiraz-check" value="shiraz" /></li>
+									<li>Verdelho <input type="checkbox" class="type-checkbox" id="verdelho-check" value="verdelho" /></li>
+									<li>Other <input type="checkbox" class="type-checkbox" id="other-check" value="other" /></li>
+								</ul>
+								<label>Wine type</label>
+								<ul class="type-select">
+									<li>Dessert <input type="checkbox" class="type-checkbox" id="dessert-check" value="dessert" /></li>
+									<li>Fortified <input type="checkbox" class="type-checkbox" id="fortified-check" value="fortified" /></li>
+									<li>Organic <input type="checkbox" class="type-checkbox" id="organic-check" value="organic" /></li>
+									<li>Red <input type="checkbox" class="type-checkbox" id="red-check" value="red" /></li>
+									<li>Sparkling <input type="checkbox" class="type-checkbox" id="sparkling-check" value="sparkling" /></li>
+									<li>White <input type="checkbox" class="type-checkbox" id="white-check" value="white" /></li>
+								</ul>
+								<label>Winery size</label>
+								<input type="text" class="large-input" id="size-select" />
+								<label>Made at</label>
+								<ul class="made-select">
+									<li>Any <input type="radio" name="made-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Locally <input type="radio" name="made-radio" class="type-radio" id="local-check" value="local" /></li>
+									<li>Different location <input type="radio" name="made-radio" class="type-radio" id="diff-check" value="diff" /></li>
+								</ul>
+								<label>Tour availability</label>
+								<ul class="tour-select">
+									<li>Any <input type="radio" name="tour-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Yes <input type="radio" name="tour-radio" class="type-radio" id="yes-check" value="yes" /></li>
+									<li>No <input type="radio" name="tour-radio" class="type-radio" id="no-check" value="no" /></li>
+								</ul>
+								<label>Tasting price</label>
+								<ul class="tasting-select">
+									<li>Any <input type="radio" name="tasting-radio" class="type-radio" id="any-check" value="any" /></li>
+									<li>Free <input type="radio" name="tasting-radio" class="type-radio" id="free-check" value="free" /></li>
+									<li>Paid <input type="radio" name="tasting-radio" class="type-radio" id="paid-check" value="paid" /></li>
+								</ul>
+								<label>Search criteria</label>
+								<ul class="criteria-select">
+									<li>All <input type="radio" name="criteria-radio" class="type-radio" id="all-check" value="all" /></li>
+									<li>Any <input type="radio" name="criteria-radio" class="type-radio" id="any-check" value="any" /></li>
+								</ul>
+							</div>
 		<script>
 			var wineries = [
 				{ 
