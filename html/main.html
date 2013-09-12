@@ -101,6 +101,7 @@
 				//submit search form
 				$("#main-search-form").on('submit', function(event) {
 					event.preventDefault();
+					//search by region not done !!!!!
 					search(region);
 				});
 			});
@@ -239,7 +240,7 @@
 						}
 						j++;
 					}
-					console.log('element: ' + i + '  score: ' + score);					
+	
 					if(score > 0) {
 						results.push({winery: wineries[i], score: score});
 					}
@@ -389,10 +390,8 @@
 						
 						j++;
 					}
-					console.log('element: ' + i + '  score: ' + score);	
-					if(found) {
-						results.push({"winery": wineries[i], "score": score});
-					}
+					
+					results.push({"winery": wineries[i], "score": score});
 				}
 				
 				results.sort(function(a,b) {

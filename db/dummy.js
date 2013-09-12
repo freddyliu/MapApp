@@ -83,9 +83,7 @@ var wineries = [
 		"tastingPrice": "paid",
 		"madeAt": "local",
 		"winerySize": "small",
-		"wineType": {			
-			"dessert": true,
-			"fortified": true,
+		"wineType": {
 			"sparkling": true,
 			"red": true
 		},
@@ -189,8 +187,6 @@ var wineries = [
 				"mon": "10:00-22:00",
 				"tue": "10:00-22:00",
 				"wed": "10:00-22:00",
-				"thu": "10:00-22:00",
-				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
 				"sun": "10:00-22:00"
 		},
@@ -226,9 +222,6 @@ var wineries = [
 		"descriptionShort": "Best wine to get you dancing",
 		"website": "www.hunterwine.com.au",
 		"openDays": {
-				"mon": "10:00-22:00",
-				"tue": "10:00-22:00",
-				"wed": "10:00-22:00",
 				"thu": "10:00-22:00",
 				"fri": "10:00-22:00",
 				"sat": "10:00-22:00",
