@@ -57,7 +57,8 @@ When clicked on again, collapse
 			if (mode == 'searchResults') {
 				var index = (i+1) + '. ';
 			} else if (mode == 'itinerary') {
-				var index = alphabet[i] + '. ';
+				//var index = alphabet[i] + '. ';
+				var index = '';
 			}
 			
 			var html = '<li class="panel panel-default" draggable="true" id="panel-'+i+'">';
