@@ -42,13 +42,8 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
-		"wineType": {			
+		"winerySize": "micro",
+		"wineType": {
 			"dessert": true,
 			"fortified": true,
 			"sparkling": true,
@@ -97,12 +92,7 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
+		"winerySize": "small",
 		"wineType": {			
 			"dessert": true,
 			"fortified": true,
@@ -152,12 +142,7 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
+		"winerySize": "medium",
 		"wineType": {			
 			"dessert": true,
 			"fortified": true,
@@ -207,12 +192,7 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
+		"winerySize": "large",
 		"wineType": {			
 			"dessert": true,
 			"fortified": true,
@@ -262,12 +242,7 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
+		"winerySize": "small",
 		"wineType": {			
 			"dessert": true,
 			"fortified": true,
@@ -317,12 +292,7 @@ var wineries = [
 		"tourAvailability": "yes",
 		"tastingPrice": "paid",
 		"madeAt": "local",
-		"wineSize": {
-			"micro": undefined,
-			"small": true,
-			"medium": true,
-			"large": undefined	
-		},
+		"winerySize": "large",
 		"wineType": {			
 			"dessert": true,
 			"fortified": true,
