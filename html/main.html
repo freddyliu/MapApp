@@ -42,6 +42,7 @@
 							<label>What are you looking for</label>
 							<input id="keywords" type="text" placeholder="" class="large-input" />
 							<div id="search-details"></div>
+							<div id="search-behaviour"></div>
 							<button type="button" class="large-button" id="more-details">add more details</button>
 							<button type="submit" class="large-button">Search</button>
 						</div>
@@ -81,10 +82,16 @@
 			
 			$(document).ready(function(event) {
 				region = "Hunter Valley";
-				$("#search-details").html = "";
+				$("#search-details").html("");
 				
 				$("button#more-details").click(function() {
-					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + numRules + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select id='is-select'><option value='is'>is</option><option value='is-not'>is not</option></select><select id='attribute-select'><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
+					textSearch = false;
+				
+					if(numRules == 0) {
+						$("#search-behaviour").append("<label>search type</label><select id='behaviour-select'><option value='all'>all</option><option value='any'>any</option></select>");
+					}
+					
+					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + numRules + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + numRules + "'><option value='is'>is</option><option value='is-not'>is not</option></select><select class='attribute-select' id='attribute-select-" + numRules + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
 					numRules++;
 				});
 
@@ -95,37 +102,55 @@
 			});
 			
 			function switchCriteria(criteria) {
+				var ruleIndex = criteria.id.split("-")[2];
+				
 				switch(criteria.options[criteria.selectedIndex].value) {
 					case "day-open":
 						console.log("day open");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option>");
 						break;						
 					
 					case "wine-variety":
 						console.log("wine variety");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='blend'>blend</option><option value='cabernet-sauvignon'>cabernet sauvignon</option><option value='chardonnay'>chardonnay</option><option value='merlot'>merlot</option><option value='moscato'>moscato</option><option value='pinot-noir'>pinot noir</option><option value='riesling'>riesling</option><option value='rose'>rose</option><option value='sauvignon-blanc'>sauvignon blanc</option><option value='semillon'>semillon</option><option value='shiraz'>shiraz</option><option value='verdelho'>verdelho</option><option value='other'>other</option>");
 						break;
 					
 					case "wine-type":
 						console.log("wine type");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='dessert'>dessert</option><option value='fortified'>fortified</option><option value='organic'>organic</option><option value='red'>red</option><option value='sparkling'>sparkling</option><option value='white'>white</option>");
 						break;
 						
 					case "winery-size":
 						console.log("winery size");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='micro'>micro</option><option value='small'>small</option><option value='medium'>medium</option><option value='large'>large</option>");
 						break;
 					
 					case "made-at":
 						console.log("made at");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='local'>local</option><option value='not-local'>not local</option>");
 						break;
 						
 					case "price-range":
 						console.log("price range");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='0-10'>< $10</option><option value='10-20'>$10 - $20</option><option value='20-30'>$20 - $30</option><option value='30-40'>$30 - $40</option><option value='40-50'>$40 - $50</option><option value='60-70'>$60 - $70</option><option value='700'>> $70</option>");
 						break;
 						
 					case "tasting-price":
 						console.log("tasting price");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='free'>free</option><option value='paid'>paid</option>");
 						break;
 						
 					case "tour":
 						console.log("tour");
+						$("#attribute-select-" + ruleIndex).html("");
+						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='yes'>yes</option><option value='no'>no</option>");
 						break;
 						
 					default:
@@ -137,27 +162,11 @@
 				if(textSearch) {
 					
 				} else {
-					var day = getDay();
-					var prefferedPrice = getPrefferedPrice();
-					var varieties = getVarieties(); //varieties array
-					var type = getType(); //type array
-					var size = getSize();
-					var made = getMade();
-					var tour = getTour();
-					var tastingPrice = getTastingPrice();
-					var searchCriteria = getSearchCriteria();
 					
-					if(searchCriteria == "all-check") {
-						//Filter using all search criterias
-						var results = allSearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice);
-					} else {
-						//Filter using any criteria
-						var results = anySearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice);
-					}
 				}
 			}
 			
-			function allSearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
+			function allSearch() {
 				var results = new Array();
 			
 				for(var i=0;i<wineries.length;i++) {

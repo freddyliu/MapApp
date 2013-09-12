@@ -63,14 +63,14 @@ select.criteria-select {
 	width: 25%;
 }
 
-select#is-select {
-	width: 15%;
+select.is-select {
+	width: 25%;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
-select#attribute-select {
-	width: 50%;
+select.attribute-select {
+	width: 40%;
 }
 
 select {
