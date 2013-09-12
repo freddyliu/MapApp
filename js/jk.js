@@ -47,7 +47,7 @@ function drawCenterMarker(){
  */
 function drawMarker(result, index){
 	var imageURL='http://jspace.com.au/gmap/img/markers/marker'+(index+1)+'.png';
-	pos = new google.maps.LatLng(result.location.lat,result.location.lon);
+	pos = new google.maps.LatLng(result.location.lat,result.location.long);
 	var marker = new google.maps.Marker({
 		map: map,
 		title: result.name,
@@ -142,25 +142,27 @@ function zoomToFit(){
  * returns DirectionRenderer object in the end
  */
 function getFullItinerary(){
-	if(itinerary.length==0){
+	if(!itinerary || itinerary.length==0){
 		//if the itinerary array is empty
 		alert('There\'s nothing in your itinerary list yet.');
 	}else if(itinerary.length==1){
 		//if the itinerary array only have one item
 		alert('There\'s only one item in your itnerary list.');
 	}else{
-		directionsDisplay = new google.maps.DirectionsRenderer();
+		directionsDisplay = new google.maps.DirectionsRenderer({
+			map: map,
+			hideRouteList: true
+		});
 		var directionsService = new google.maps.DirectionsService();
-		directionsDisplay.setMap(map);
 		
 		var start = results[itinerary[0].resultId].location;
-		start = new google.maps.LatLng(start.lat,start.lon);
+		start = new google.maps.LatLng(start.lat,start.long);
 		var end = results[itinerary[itinerary.length-1].resultId].location;
-		end = new google.maps.LatLng(end.lat,end.lon);
+		end = new google.maps.LatLng(end.lat,end.long);
 		var waypoints = [];
 		for(var i=1;i<itinerary.length-1;i++){
 			var loc = results[itineary[i].resultId].location;
-			loc = new google.maps.LatLng(loc.lat,loc.lon);
+			loc = new google.maps.LatLng(loc.lat,loc.long);
 			var waypoint = {
 				location:loc,
 				stopover:true
@@ -188,16 +190,18 @@ function getFullItinerary(){
  * show itinerary info in the 'itineraryContainer' html container
  */
 function showItineraryInfo(){
-	var html = '';
-	html += '<ul>Your Itinerary:';
-	var letter = 'A';
-	for(var i=0;i<itinerary.length;i++){
-		html += '<li>'+letter+': '+results[itinerary[i].resultId].name+'</li>';
-		letter = String.fromCharCode(letter.charCodeAt(0) + 1);
+	if(directionsDisplay){
+		var html = '';
+		html += '<ul>Your Itinerary:';
+		var letter = 'A';
+		for(var i=0;i<itinerary.length;i++){
+			html += '<li>'+letter+': '+results[itinerary[i].resultId].name+'</li>';
+			letter = String.fromCharCode(letter.charCodeAt(0) + 1);
+		}
+		html += '</ul>';
+		$('#itinerary').append(html);
+		directionsDisplay.setPanel(itineraryContainer);
 	}
-	html += '</ul>';
-	$('#itinerary').append(html);
-	directionsDisplay.setPanel(itineraryContainer);
 }
 
 /*

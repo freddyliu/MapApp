@@ -73,7 +73,7 @@ var wineries = [
 		},
 		"price": "$10 - $20",
 		"rating": 3
-	},
+	}
 ];
 
 //dummy region JSON data
@@ -82,3 +82,8 @@ var region ={
 		'latitude' : -32.700000,
 		'longtitude' : 151.266700
 	};
+	
+var itinerary = [
+	{'resultId':0},
+	{'resultId':2}
+];
