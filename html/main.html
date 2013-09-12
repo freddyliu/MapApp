@@ -92,66 +92,57 @@
 						$("#search-behaviour").append("<label>search type</label><select id='behaviour-select'><option value='all'>all</option><option value='any'>any</option></select>");
 					}
 					
-					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + nextID + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + nextID + "'><option value='is'>is</option><option value='is-not'>is not</option></select><select class='attribute-select' id='attribute-select-" + nextID + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
+					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + nextID + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + nextID + "'><option value='0'>is</option><option value='1'>is not</option></select><select class='attribute-select' id='attribute-select-" + nextID + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
 					nextID++;
 					numRules++;
 				});
 
 				$("#main-search-form").on('submit', function(event) {
 					event.preventDefault();
-					search(region);
+					search();
 				});
 			});
 			
 			function switchCriteria(criteria) {
-				console.log($("#criteria-select-" + numRules).value);
 				var ruleIndex = criteria.id.split("-")[2];
 				
 				switch(criteria.options[criteria.selectedIndex].value) {
 					case "day-open":
-						console.log("day open");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option>");
 						break;						
 					
 					case "wine-variety":
-						console.log("wine variety");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='blend'>blend</option><option value='cabernet-sauvignon'>cabernet sauvignon</option><option value='chardonnay'>chardonnay</option><option value='merlot'>merlot</option><option value='moscato'>moscato</option><option value='pinot-noir'>pinot noir</option><option value='riesling'>riesling</option><option value='rose'>rose</option><option value='sauvignon-blanc'>sauvignon blanc</option><option value='semillon'>semillon</option><option value='shiraz'>shiraz</option><option value='verdelho'>verdelho</option><option value='other'>other</option>");
 						break;
 					
 					case "wine-type":
-						console.log("wine type");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='dessert'>dessert</option><option value='fortified'>fortified</option><option value='organic'>organic</option><option value='red'>red</option><option value='sparkling'>sparkling</option><option value='white'>white</option>");
 						break;
 						
 					case "winery-size":
-						console.log("winery size");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='micro'>micro</option><option value='small'>small</option><option value='medium'>medium</option><option value='large'>large</option>");
 						break;
 					
 					case "made-at":
-						console.log("made at");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='local'>local</option><option value='not-local'>not local</option>");
 						break;
 						
 					case "price-range":
-						console.log("price range");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='0-10'>< $10</option><option value='10-20'>$10 - $20</option><option value='20-30'>$20 - $30</option><option value='30-40'>$30 - $40</option><option value='40-50'>$40 - $50</option><option value='60-70'>$60 - $70</option><option value='700'>> $70</option>");
 						break;
 						
 					case "tasting-price":
-						console.log("tasting price");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='free'>free</option><option value='paid'>paid</option>");
 						break;
 						
 					case "tour":
-						console.log("tour");
 						$("#attribute-select-" + ruleIndex).html("");
 						$("#attribute-select-" + ruleIndex).append("<option value='any'>any</option><option value='yes'>yes</option><option value='no'>no</option>");
 						break;
@@ -171,137 +162,90 @@
 			
 			function allSearch() {
 				var results = new Array();
+				var found = true;
 			
-				for(var i=0;i<numRules;i++) {
-					
+				for(var i=0;i<wineries.length;i++) {
+				
+					var j = 0;
+					boolean found = true;
+					while((j<numRules) && (found)) {
+						var selectedCriteria = document.getElementById("criteria-select-" + j);
+						var selectedCriteriaValue = selectedCriteria.options[selectedCriteria.selectedIndex].value;
+						var selectedIs = document.getElementById("is-select-" + j);
+						var selectedIsValue = selectedIs.options[selectedIs.selectedIndex].value;
+						var selectedAttribute = document.getElementById("attribute-select-" + j);
+						var selectedAttributeValue = selectedAttribute.options[selectedAttribute.selectedIndex].value;
+						
+						if((selectedCriteriaValue == "day-open") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "wine-variety") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "wine-type") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "winery-size") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "made-at") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "price-range") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "tasting-price") && (found)) {
+						
+						}
+						
+						if((selectedCriteriaValue == "tour") && (found)) {
+						
+						}
+						
+						j++;
+					}
 				}
 				return results;
 			}
 			
-			function anySearch(region, day, prefferedPrice, varieties, type, size, made, tour, tastingPrice) {
-				var results = new Array();
+			function anySearch() {
 				
-				for(var i=0;i<wineries.length;i++) {
-					if(wineries[i].location.region == region) {
-						var score = 0;
-						
-						if((day != "") && (day in wineries[i].openDays)) {
-							score++;
-						}
-						
-						if(prefferedPrice != "") {
-							if(prefferedPrice in wineries[i].price) {
-								score++;
-							}
-						}
-						
-						if(varieties.length > 0) {
-							for(var i=0;i<varieties.length;i++) {
-								if(varieties[i] in wineries[i].wineVariety) {
-									score++;
-								}
-							}
-						}
-						
-						if(type.length > 0) {
-							for(var i=0;type.length;i++) {
-								if(type[i] in wineries[i].wineType) {
-									score++;
-								}
-							}
-						}
-						
-						if(size != "") {
-							if(size in wineries[i].wineSize) {
-								score++;
-							}
-						}
-						
-						if(made != "") {
-							if(made in wineries[i].madeAt) {
-								score++;
-							}
-						}
-						
-						if(tour != "any") {
-							if(wineries[i].tourAvailability == tour) {
-								score++;
-							}
-						}
-						
-						if(tastingPrice != "any") {
-							if(wineries[i].tastingPrice == tastingPrice) {
-								score++;
-							}
-						}
-						
-						results.push({"winery": wineries[i], "score": score});
+			}
+			
+			function searchHash(winery, selectedIsValue, selectedAttributeValue) {
+				var found = true;
+				
+				if(selectedIsValue == 0) {
+					if(!(selectedAttributeValue in winery)) {
+						found = false;
+					}
+				} else {
+					if(selectedAttributeValue in winery) {
+						found = false;
 					}
 				}
 				
-				return results;
+				return found;
 			}
 			
-			function getDay() {
-				return document.getElementById("day-select").value;
-			}
-			
-			function getPrefferedPrice() {
-				return document.getElementById("price-select").value;
-			}
-			
-			function getVarieties() {
-				var varieties = new Array();
+			function searchElement(wineryElement, selectedIsValue, selectedAttributeValue) {
+				var found = true;
 				
-				if(document.getElementById("blend-check").checked) { varieties.push("blend") };
-				if(document.getElementById("cabernet-check").checked) { varieties.push("cabernet-sauvignon") };
-				if(document.getElementById("chardonnay-check").checked) { varieties.push("chardonnay") };
-				if(document.getElementById("merlot-check").checked) { varieties.push("merlot") };
-				if(document.getElementById("moscato-check").checked) { varieties.push("moscato") };
-				if(document.getElementById("pinot-check").checked) { varieties.push("pinot-noir") };
-				if(document.getElementById("riesling-check").checked) { varieties.push("riesling") };
-				if(document.getElementById("rose-check").checked) { varieties.push("rose") };
-				if(document.getElementById("sauvignon-check").checked) { varieties.push("sauvignon-blanc") };
-				if(document.getElementById("semillon-check").checked) { varieties.push("semillon") };
-				if(document.getElementById("shiraz-check").checked) { varieties.push("shiraz") };
-				if(document.getElementById("verdelho-check").checked) { varieties.push("verdelho") };
-				if(document.getElementById("other-check").checked) { varieties.push("other") };
-				
-				return varieties;
-			}
-			
-			function getType() {
-				var type = new Array();
-				
-				if(document.getElementById("dessert-check").checked) { type.push("dessert") };
-				if(document.getElementById("fortified-check").checked) { type.push("fortified") };
-				if(document.getElementById("organic-check").checked) { type.push("organic") };
-				if(document.getElementById("red-check").checked) { type.push("red") };
-				if(document.getElementById("sparkling-check").checked) { type.push("sparkling") };
-				if(document.getElementById("white-check").checked) { type.push("white") };
-				
-				return type;
-			}
-			
-			function getSize() {
-				return document.getElementById("size-select").value;
-			}
-			
-			function getMade() {
-				return $('input[name="made-radio"]:checked').val();
-			}
-			
-			function getTour() {
-				return $('input[name="tour-radio"]:checked').val();
-			}
-			
-			function getTastingPrice() {
-				return $('input[name="tasting-radio"]:checked').val();
-			}
-			
-			function getSearchCriteria() {
-				console.log($('input[name="criteria-radio"]:checked').val());
-				return $('input[name="criteria-radio"]:checked').val();
+				if(selectedIsValue == 0) {
+					if(!(selectedAttributeValue == wineryElement)) {
+						found = false;
+					}
+				} else {
+					if(selectedAttributeValue == wineryElement) {
+						found = false;
+					}
+				}
 			}
 			
 		</script>
