@@ -161,9 +161,9 @@
 				var results = new Array();
 			
 				if(textSearch) {
-					var searchValue = document.getElementById("keywords").html().split(" ");
-					
-					results = textSearch(searchValue);
+					var searchValue = $("#keywords").val().split(" ");
+
+					results = textSearchFunc(searchValue);
 				} else {
 					var selectedBehaviour = document.getElementById("behaviour-select");
 					var selectedBehaviourValue = selectedBehaviour.options[selectedBehaviour.selectedIndex].value;
@@ -179,7 +179,7 @@
 			}
 			
 			//perform text search
-			function textSearch(searchValue) {
+			function textSearchFunc(searchValue) {
 				var results = new Array();
 				
 				for(var i=0;i<wineries.length;i++) {
@@ -189,63 +189,63 @@
 					while(j<searchValue.length) {
 						
 						for(var k=0;k<wineries[i].wineVariety.length;k++) {
-							if(wineries[i].wineVariety[k].indexOf(searchValue[j]) != -1) {
+							if(wineries[i].wineVariety[k].indexOf(searchValue[j]) > -1) {
 								score++;
 							}
 						}
 						
 						for(var k=0;k<wineries[i].wineType.length;k++) {
-							if(wineries[i].wineType[k].indexOf(searchValue[j]) != -1) {
+							if(wineries[i].wineType[k].indexOf(searchValue[j]) > -1) {
 								score++;
 							}
 						}
 						
 						for(var k=0;k<wineries[i].openDays.length;k++) {
-							if(wineries[i].openDays[k].indexOf(searchValue[j]) != -1) {
+							if(wineries[i].openDays[k].indexOf(searchValue[j]) > -1) {
 								score++;
 							}
 						}
 						
-						if(wineries[i].name.indexOf(search Value[j]) != -1) {
+						if(wineries[i].name.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].descriptionShort.indexOf(search Value[j]) != -1) {
+						if(wineries[i].descriptionShort.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].website.indexOf(search Value[j]) != -1) {
+						if(wineries[i].website.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].location.address.indexOf(searchValue[j]) != -1) {
+						if(wineries[i].location.address.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].location.region.indexOf(searchValue[j]) != -1) {
+						if(wineries[i].location.region.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].madeAt.indexOf(searchValue[j]) != -1) {
+						if(wineries[i].madeAt.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].winerySize.indexOf(searchValue[j]) != -1) {
+						if(wineries[i].winerySize.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
 						
-						if(wineries[i].price.indexOf(searchValue[j]) != -1) {
+						if(wineries[i].price.indexOf(searchValue[j]) > -1) {
 							score++;
 						}
+						j++;
 					}
-					
+					console.log('element: ' + i + '  score: ' + score);					
 					if(score > 0) {
-						results.push("winery": wineries[i], "score": score);
+						results.push({winery: wineries[i], score: score});
 					}
 				}
 				
-				results.sort(function(a,b) {
-					
+				results.sort(function(a,b) {					
 					return b.score - a.score;
 				});
 				
@@ -389,9 +389,9 @@
 						
 						j++;
 					}
-					
+					console.log('element: ' + i + '  score: ' + score);	
 					if(found) {
-						results.push("winery": wineries[i], "score": score);
+						results.push({"winery": wineries[i], "score": score});
 					}
 				}
 				
