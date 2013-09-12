@@ -85,6 +85,7 @@
 				region = "Hunter Valley";
 				$("#search-details").html("");
 				
+				//add more details
 				$("button#more-details").click(function() {
 					textSearch = false;
 				
@@ -97,12 +98,14 @@
 					numRules++;
 				});
 
+				//submit search form
 				$("#main-search-form").on('submit', function(event) {
 					event.preventDefault();
-					search();
+					search(region);
 				});
 			});
 			
+			//switch search criteria
 			function switchCriteria(criteria) {
 				var ruleIndex = criteria.id.split("-")[2];
 				
@@ -152,22 +155,111 @@
 				}	
 			}
 			
+			//perform search (text or any or all)
+			//region hasn't been implemented yet !!!
 			function search(region) {
+				var results = new Array();
+			
 				if(textSearch) {
+					var searchValue = document.getElementById("keywords").html().split(" ");
 					
+					results = textSearch(searchValue);
 				} else {
+					var selectedBehaviour = document.getElementById("behaviour-select");
+					var selectedBehaviourValue = selectedBehaviour.options[selectedBehaviour.selectedIndex].value;
 					
+					if(selectedBehaviourValue == "all") {
+						results = allSearch();
+					} else {
+						results = anySearch();
+					}
 				}
+				
+				return results;
 			}
 			
+			//perform text search
+			function textSearch(searchValue) {
+				var results = new Array();
+				
+				for(var i=0;i<wineries.length;i++) {
+					var j = 0;
+					var score = 0;
+					
+					while(j<searchValue.length) {
+						
+						for(var k=0;k<wineries[i].wineVariety.length;k++) {
+							if(wineries[i].wineVariety[k].indexOf(searchValue[j]) != -1) {
+								score++;
+							}
+						}
+						
+						for(var k=0;k<wineries[i].wineType.length;k++) {
+							if(wineries[i].wineType[k].indexOf(searchValue[j]) != -1) {
+								score++;
+							}
+						}
+						
+						for(var k=0;k<wineries[i].openDays.length;k++) {
+							if(wineries[i].openDays[k].indexOf(searchValue[j]) != -1) {
+								score++;
+							}
+						}
+						
+						if(wineries[i].name.indexOf(search Value[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].descriptionShort.indexOf(search Value[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].website.indexOf(search Value[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].location.address.indexOf(searchValue[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].location.region.indexOf(searchValue[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].madeAt.indexOf(searchValue[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].winerySize.indexOf(searchValue[j]) != -1) {
+							score++;
+						}
+						
+						if(wineries[i].price.indexOf(searchValue[j]) != -1) {
+							score++;
+						}
+					}
+					
+					if(score > 0) {
+						results.push("winery": wineries[i], "score": score);
+					}
+				}
+				
+				results.sort(function(a,b) {
+					
+					return b.score - a.score;
+				});
+				
+				return results;
+			}
+			
+			//perform all(and) search
 			function allSearch() {
 				var results = new Array();
-				var found = true;
-			
+
 				for(var i=0;i<wineries.length;i++) {
-				
 					var j = 0;
-					boolean found = true;
+					var found = true;
+					
 					while((j<numRules) && (found)) {
 						var selectedCriteria = document.getElementById("criteria-select-" + j);
 						var selectedCriteriaValue = selectedCriteria.options[selectedCriteria.selectedIndex].value;
@@ -176,51 +268,145 @@
 						var selectedAttribute = document.getElementById("attribute-select-" + j);
 						var selectedAttributeValue = selectedAttribute.options[selectedAttribute.selectedIndex].value;
 						
-						if((selectedCriteriaValue == "day-open") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "wine-variety") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "wine-type") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "winery-size") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "made-at") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "price-range") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "tasting-price") && (found)) {
-						
-						}
-						
-						if((selectedCriteriaValue == "tour") && (found)) {
-						
+						if(selectedAttributeValue != "any") {
+							if((selectedCriteriaValue == "day-open") && (found)) {
+								found = searchHash(wineries[i].openDays, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "wine-variety") && (found)) {
+								found = searchHash(wineries[i].wineVariety, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "wine-type") && (found)) {
+								found = searchHash(wineries[i].wineType, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "winery-size") && (found)) {
+								found = searchElement(wineries[i].winerySize, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "made-at") && (found)) {
+								found = searchElement(wineries[i].madeAt, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "price-range") && (found)) {
+								found = searchElement(wineries[i].price, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "tasting-price") && (found)) {
+								found = searchElement(wineries[i].tastingPrice, selectedIsValue, selectedAttributeValue);
+							}
+							
+							if((selectedCriteriaValue == "tour") && (found)) {
+								found = searchElement(wineries[i].tourAvailability, selectedIsValue, selectedAttributeValue);
+							}
 						}
 						
 						j++;
 					}
+					
+					if(found) {
+						results.push(wineries[i]);
+					}
 				}
+				
 				return results;
 			}
 			
+			//perform any(or) search and rank the results
 			function anySearch() {
+				var results = new Array();
+
+				for(var i=0;i<wineries.length;i++) {
+					var j = 0;
+					var score = 0;
+					
+					while(j<numRules) {
+						var selectedCriteria = document.getElementById("criteria-select-" + j);
+						var selectedCriteriaValue = selectedCriteria.options[selectedCriteria.selectedIndex].value;
+						var selectedIs = document.getElementById("is-select-" + j);
+						var selectedIsValue = selectedIs.options[selectedIs.selectedIndex].value;
+						var selectedAttribute = document.getElementById("attribute-select-" + j);
+						var selectedAttributeValue = selectedAttribute.options[selectedAttribute.selectedIndex].value;
+						
+						if(selectedAttributeValue != "any") {
+							if(selectedCriteriaValue == "day-open") {
+								found = searchHash(wineries[i].openDays, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "wine-variety") {
+								found = searchHash(wineries[i].wineVariety, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "wine-type") {
+								found = searchHash(wineries[i].wineType, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "winery-size") {
+								found = searchElement(wineries[i].winerySize, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "made-at") {
+								found = searchElement(wineries[i].madeAt, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "price-range") {
+								found = searchElement(wineries[i].price, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "tasting-price") {
+								found = searchElement(wineries[i].tastingPrice, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+							
+							if(selectedCriteriaValue == "tour") {
+								found = searchElement(wineries[i].tourAvailability, selectedIsValue, selectedAttributeValue);
+								if(found) {
+									score++;
+								}
+							}
+						}
+						
+						j++;
+					}
+					
+					if(found) {
+						results.push("winery": wineries[i], "score": score);
+					}
+				}
 				
+				results.sort(function(a,b) {
+					
+					return b.score - a.score;
+				});
+				
+				return results;
 			}
 			
+			//search hash/array element in winery object
 			function searchHash(winery, selectedIsValue, selectedAttributeValue) {
 				var found = true;
-				
+
 				if(selectedIsValue == 0) {
 					if(!(selectedAttributeValue in winery)) {
 						found = false;
@@ -234,6 +420,7 @@
 				return found;
 			}
 			
+			//search individual element in winery object
 			function searchElement(wineryElement, selectedIsValue, selectedAttributeValue) {
 				var found = true;
 				
