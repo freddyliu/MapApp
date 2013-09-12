@@ -35,7 +35,7 @@ var wineries = [
 		],
 		"location": [
 			{
-				"address": "hv road 2",
+				"address": "203 Hunter Rd, Hunter Valley NSW 2333 ",
 				"region": "Hunter Valley"
 			}
 		],
