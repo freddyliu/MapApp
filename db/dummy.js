@@ -52,7 +52,7 @@ var wineries = [
 		"wineVariety": {
 			"blend": true,
 			"cabernet sauvignon": true,
-			"chardonnay": true
+			"chardonnay": true,
 			"sauvignon blanc": true,
 			"shiraz": true
 		},
@@ -92,7 +92,7 @@ var wineries = [
 		"wineVariety": {
 			"blend": true,
 			"cabernet sauvignon": true,
-			"chardonnay": true
+			"chardonnay": true,
 			"sauvignon blanc": true,
 			"shiraz": true
 		},
@@ -267,3 +267,8 @@ var region ={
 		'latitude' : -32.700000,
 		'longtitude' : 151.266700
 	};
+	
+	var itinerary = [
+	{'result':0},
+	{'result':2}
+	];
