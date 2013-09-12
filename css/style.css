@@ -8,17 +8,39 @@
 	-webkit-user-drag: element;
 }
 .searchResults {
-	list-style-type:decimal;
-	list-style-position:inside;
+	list-style: none;
 	padding-left: 0;
 	margin-left: 0;	
 }
 .itineraryResults {
-	list-style-type:upper-alpha;
-	list-style-position:inside;
+	list-style: none;
 	padding-left: 0;
 	margin-left: 0;	
 }
+
+
+
+/*
+.searchResults li { counter-increment: sIndex !important; }
+.searchResults li:before {
+	list-style-type:decimal;
+	list-style-position:inside;
+	display: inline;
+	content: counter(sIndex);
+	float: left;
+}
+.itineraryResults li { counter-increment: iIndex !important; }
+.itineraryResults li:before {
+	list-style-type:upper-alpha;
+	list-style-position:inside;
+	display: inline;
+	content: counter(iIndex);
+	float: left;
+}
+*/
+
+
+
 span.stars, span.stars span {
     display: inline-block;
     background: url(../img/stars.png) 0 -16px repeat-x;

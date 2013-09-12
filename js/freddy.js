@@ -7,6 +7,8 @@ This should include website, address, open hours/days, wine types, star rating.
 When clicked on again, collapse 
 
 */
+	var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
 	$.fn.stars = function() {	
 		return $(this).each(function() {
 			// Get the value
@@ -21,14 +23,18 @@ When clicked on again, collapse
 		});
 	}
 
-
-
 	function loadResults(mode) {
 		$('#results').html("");	
 		for (var i = 0; i < wineries.length; i++) {
+			if (mode == 'searchResults') {
+				var index = (i+1) + '. ';
+			} else if (mode == 'itinerary') {
+				var index = alphabet[i] + '. ';
+			}
+			
 			var html = '<li class="panel panel-default" draggable="true" id="panel-'+i+'">';
 			html += '<div class="panel-heading">';
-			html += '<h2 class="panel-title">';
+			html += '<h3 class="panel-title">';
 			
 			if (mode == 'searchResults') {
 				html += '<span class="pull-right">' + '<button id="add-'+i+'" type="button" class="addBtn btn btn-small btn-success"><i class="icon-plus-sign"></i> Add to Itinerary</button>' + '</span>';
@@ -37,9 +43,9 @@ When clicked on again, collapse
 			}
 			
 			html += '<a class="accordion-toggle" data-toggle="collapse" data-parent="#results" href="#collapse-'+i+'">';
-			html += '<h2> '+ wineries[i].name + '</h2>' + wineries[i].descriptionShort;			
+			html += '<h3>' + index + ' ' + wineries[i].name + '</h3>' + wineries[i].descriptionShort;
 			html += '</a>';
-			html += '</h2>';
+			html += '</h3>';
 			html += '</div>'
 			html += '<div id="collapse-'+i+'" class="panel-collapse collapse">';
 			html += '<div class="panel-body">';			
@@ -77,7 +83,7 @@ When clicked on again, collapse
 			});
 		} else if (mode == 'itinerary') {
 			$('#results').sortable();
-        	$('#results').disableSelection();
+        	//$('#results').disableSelection();
 			$('.removeBtn').on('click', function(event) {
 				var i = $(this).attr('id').split('-');				
 				$('#panel-'+i[1]).hide('slow', function(){ ('#panel-'+i[1]).remove(); });
