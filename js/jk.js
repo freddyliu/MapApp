@@ -74,8 +74,11 @@ function drawAllMarkers(){
 function setMarkerInfo(marker,index){
 		var info = new google.maps.InfoWindow();
 		//content which goes into each infowindow
-		var content = results[index].name;
+		var content = '<b style="font-size: 20px">'+results[index].name+'</b>';
+			content += '<br />'+ results[index].descriptionShort;
+			content += '<br />Rating: ' + results[index].rating;
 			content += '<br />Address: ' + results[index].location.address;
+			content += '<br />Website: <a target="_blank" href="'+results[index].website+'">'+ results[index].website+'</a>';
 		
 			info.setContent(content);
 		infoArray.push(info);
@@ -272,7 +275,7 @@ function inItinerary(index){
 }
 
 /*======================================================= app control =======================================================*/
-function appShowAllMarkersOnMap(){
+function appShowAllResults(){
 	createMap();
 	destroyMarkers();
 	destroyInfo();
@@ -284,9 +287,10 @@ function appShowAllMarkersOnMap(){
 
 function appShowIntinery(){
 	createMap();
+	destroyMarkers();
+	destroyInfo();
 	clearItinerary();
 	drawCenterMarker();
-	destroyMarkers();
 	getFullItinerary();
 	showItineraryInfo();
 }

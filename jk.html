@@ -12,14 +12,37 @@
 		
 	</head>
 	<body>
-		<div id="itinerary_div"></div>
+		<div id='results'></div>
+		<div id='iti_list'></div>
+		
 		<div id="map"></div>
+		<div id="itinerary_div"></div>
 		<script src="db/dummy.js"></script>
 		<script src="js/jk.js"></script>
 		<script>
-		addToItinerary(4);
-			appShowIntinery();
-			clearItinerary();
+			function showResults(){
+				$('#results').html('');
+				$('#results').append('</br>results:<ol>');
+				for(var i=0;i<results.length;i++){
+					$('#results').append('<li>'+results[i].name+'<button id="resultBtn_'+i+'" onclick="buttonEvent('+i+')">add</button></li>');
+				}
+				$('#results').append('</ol><button id="showRst" onclick="appShowAllResults()">show Results</button>');
+			}
+			function showItinerary(){
+				$('#iti_list').html('');
+				$('#iti_list').append('</br>itinerary:<ul>');
+				for(var i=0;i<itinerary.length;i++){
+					$('#iti_list').append('<li>'+results[itinerary[i]].name+'</li>');
+				}
+				$('#iti_list').append('</ul><button id="showIti" onclick="appShowIntinery()">show Itinerary</button>');
+			}
+
+			function buttonEvent(i){
+				addToItinerary(i);
+				showItinerary();
+			}
+			showResults();
+			showItinerary();
 		</script>
 	</body>
 </html>
