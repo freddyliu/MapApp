@@ -79,7 +79,6 @@
 			var textSearch = true;
 			var region = "";
 			var numRules = 0;
-			var nextID = 0;
 			
 			$(document).ready(function(event) {
 				region = "Hunter Valley";
@@ -93,8 +92,7 @@
 						$("#search-behaviour").append("<label>search type</label><select id='behaviour-select'><option value='all'>all</option><option value='any'>any</option></select>");
 					}
 					
-					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + nextID + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + nextID + "'><option value='0'>is</option><option value='1'>is not</option></select><select class='attribute-select' id='attribute-select-" + nextID + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
-					nextID++;
+					$("#search-details").append("<div class='detail'><select class='criteria-select' id='criteria-select-" + numRules + "' onchange='switchCriteria(this)'><option value='day-open'>day open</option><option value='wine-variety'>wine variety</option><option value='wine-type'>wine type</option><option value='winery-size'>winery size</option><option value='made-at'>made at</option><option value='price-range'>price range</option><option value='tasting-price'>tasting price</option><option value='tour'>tour</option></select><select class='is-select' id='is-select-" + nextID + "'><option value='0'>is</option><option value='1'>is not</option></select><select class='attribute-select' id='attribute-select-" + nextID + "'><option value='any'>any</option><option value='mon'>monday</option><option value='tue'>tuesday</option><option value='wed'>wednesday</option><option value='thu'>thursday</option><option value='fri'>friday</option><option value='sat'>saturday</option><option value='sun'>sunday</option></select></div>");
 					numRules++;
 				});
 
@@ -433,6 +431,9 @@
 					}
 				}
 			}
+			
+			//delete search criteria
+			function deleteSearchCriteria
 			
 		</script>
 	</body>
